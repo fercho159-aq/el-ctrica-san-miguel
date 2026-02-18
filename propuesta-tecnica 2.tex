@@ -1,0 +1,1043 @@
+\documentclass[12pt,a4paper]{article}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{calc}
+\usepackage{eso-pic}
+\usepackage{lipsum}
+\usepackage{setspace}
+\usepackage{parskip}
+
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc, shadows, fit, backgrounds, decorations.markings}
+\pgfplotsset{compat=1.18}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+% ============================================================
+% COLORES CORPORATIVOS
+% ============================================================
+\definecolor{rojo}{HTML}{CC0000}
+\definecolor{rojoclaro}{HTML}{FF3333}
+\definecolor{grisoscuro}{HTML}{2B2B2B}
+\definecolor{gristexto}{HTML}{5D6576}
+\definecolor{fondoclaro}{HTML}{F3F7F9}
+\definecolor{azulelectrico}{HTML}{0066CC}
+\definecolor{verdeok}{HTML}{28A745}
+\definecolor{amarillo}{HTML}{FFC107}
+\definecolor{naranja}{HTML}{FF6B35}
+
+% ============================================================
+% ESTILOS
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=rojo,
+    urlcolor=azulelectrico,
+    citecolor=grisoscuro
+}
+
+\titleformat{\section}
+    {\Large\bfseries\color{rojo}}
+    {\thesection.}{0.5em}{}
+    [\vspace{-0.5em}\textcolor{rojo}{\rule{\textwidth}{1.5pt}}]
+
+\titleformat{\subsection}
+    {\large\bfseries\color{grisoscuro}}
+    {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\color{gristexto}}
+    {\thesubsubsection}{0.5em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{gristexto}{Propuesta T\'ecnica --- El\'ectrica San Miguel}}
+\fancyhead[R]{\small\textcolor{gristexto}{Febrero 2026}}
+\fancyfoot[C]{\textcolor{rojo}{\thepage}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rojo}\leaders\hrule height \headrulewidth\hfill}}
+
+% ============================================================
+% CAJAS PERSONALIZADAS
+% ============================================================
+\newtcolorbox{cajainfo}[1][]{
+    colback=fondoclaro,
+    colframe=azulelectrico,
+    fonttitle=\bfseries,
+    title=#1,
+    rounded corners,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajadestacado}[1][]{
+    colback=rojo!5,
+    colframe=rojo,
+    fonttitle=\bfseries\color{white},
+    colbacktitle=rojo,
+    title=#1,
+    rounded corners,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajaprecio}{
+    colback=verdeok!5,
+    colframe=verdeok,
+    rounded corners,
+    boxrule=1.5pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+    % Fondo
+    \fill[grisoscuro] (current page.south west) rectangle (current page.north east);
+
+    % Franja roja diagonal
+    \fill[rojo] ([yshift=-4cm]current page.north west) --
+                 ([yshift=-2cm]current page.north east) --
+                 ([yshift=-8cm]current page.north east) --
+                 ([yshift=-10cm]current page.north west) -- cycle;
+
+    % Franja roja inferior
+    \fill[rojo] ([yshift=3cm]current page.south west) rectangle ([yshift=0cm]current page.south east);
+
+    % Circuito decorativo
+    \foreach \i in {1,...,8} {
+        \draw[white!15, line width=0.5pt]
+            ([xshift=\i*2.5cm, yshift=-12cm]current page.north west) -- ++(0,-4cm) -- ++(1.5cm,0);
+    }
+
+    % Icono rayo
+    \node[white, scale=4] at ([yshift=-6cm]current page.center) {\faIcon{bolt}};
+
+    % Titulo principal
+    \node[white, font=\fontsize{38}{42}\bfseries\selectfont, anchor=center, text width=16cm, align=center]
+        at ([yshift=1cm]current page.center)
+        {PROPUESTA T\'ECNICA};
+
+    \node[white, font=\fontsize{22}{26}\selectfont, anchor=center, text width=16cm, align=center]
+        at ([yshift=-1.5cm]current page.center)
+        {Redise\~no del Sitio Web};
+
+    \node[white!80, font=\fontsize{18}{22}\selectfont, anchor=center]
+        at ([yshift=-3.5cm]current page.center)
+        {\textbf{electrica-sanmiguel.com}};
+
+    % Linea separadora
+    \draw[amarillo, line width=2pt]
+        ([xshift=-4cm, yshift=-4.8cm]current page.center) --
+        ([xshift=4cm, yshift=-4.8cm]current page.center);
+
+    % Info inferior
+    \node[white, font=\large, anchor=center]
+        at ([yshift=-6cm]current page.center)
+        {El\'ectrica San Miguel};
+
+    % Fecha
+    \node[white, font=\large, anchor=center]
+        at ([yshift=1.2cm]current page.south)
+        {Febrero 2026 \quad|\quad V1.0};
+
+    % Texto barra inferior
+    \node[white, font=\small, anchor=center]
+        at ([yshift=0.3cm, xshift=-4cm]current page.south)
+        {\faIcon{envelope} contacto};
+    \node[white, font=\small, anchor=center]
+        at ([yshift=0.3cm, xshift=4cm]current page.south)
+        {\faIcon{globe} electrica-sanmiguel.com};
+
+\end{tikzpicture}
+\end{titlepage}
+
+% ============================================================
+% TABLA DE CONTENIDOS
+% ============================================================
+\tableofcontents
+\newpage
+
+% ============================================================
+% 1. RESUMEN EJECUTIVO
+% ============================================================
+\section{Resumen Ejecutivo}
+
+\begin{cajadestacado}[Objetivo del Proyecto]
+Redise\~nar completamente el sitio web \textbf{electrica-sanmiguel.com}, transformándolo de un sitio informativo básico con WooCommerce a una \textbf{plataforma interactiva y moderna} que genere valor real para los clientes, incorporando herramientas innovadoras como un simulador de iluminación, un asistente de cableado y un sistema de blog automatizado con inteligencia artificial.
+\end{cajadestacado}
+
+\subsection{Situación Actual}
+
+El sitio actual presenta las siguientes características:
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Plataforma:} WordPress 6.7.4 con WooCommerce
+    \item \textbf{Diseño:} Basado en tema genérico con personalizaciones CSS limitadas
+    \item \textbf{Paleta:} Rojo (\texttt{\#FF0000}) como color primario, fondo claro (\texttt{\#F3F7F9})
+    \item \textbf{Tipografía:} Titillium Web como fuente principal
+    \item \textbf{Funcionalidades:} Catálogo de productos, carrito de compras, formulario de contacto (CF7)
+    \item \textbf{Analytics:} Google Analytics (UA legacy)
+    \item \textbf{Rendimiento:} Margen amplio de mejora en velocidad y SEO
+\end{itemize}
+
+\subsection{Visión del Nuevo Sitio}
+
+\begin{cajainfo}[Pilares del Redise\~no]
+\begin{enumerate}[itemsep=4pt]
+    \item \textbf{Interactividad:} Herramientas que aporten valor real al usuario
+    \item \textbf{Diseño moderno:} Interfaz limpia, profesional y responsiva
+    \item \textbf{Automatización:} Blog con generación de contenido asistida por IA
+    \item \textbf{Rendimiento:} Sitio rápido, optimizado para SEO y conversión
+    \item \textbf{Escalabilidad:} Arquitectura preparada para crecer
+\end{enumerate}
+\end{cajainfo}
+
+\newpage
+
+% ============================================================
+% 2. ANÁLISIS DEL SITIO ACTUAL
+% ============================================================
+\section{Análisis del Sitio Actual}
+
+\subsection{Diagrama de Arquitectura Actual}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm and 2cm,
+    box/.style={rectangle, draw=gristexto, fill=fondoclaro, rounded corners=5pt,
+                minimum width=3cm, minimum height=1cm, font=\small, align=center,
+                drop shadow={shadow xshift=1pt, shadow yshift=-1pt, opacity=0.3}},
+    server/.style={rectangle, draw=rojo, fill=rojo!10, rounded corners=5pt,
+                   minimum width=3.5cm, minimum height=1.2cm, font=\small\bfseries, align=center,
+                   drop shadow={shadow xshift=1pt, shadow yshift=-1pt, opacity=0.3}},
+    arrow/.style={-{Stealth[length=6pt]}, thick, gristexto},
+    label/.style={font=\scriptsize\color{gristexto}, midway}
+]
+
+% Servidor
+\node[server] (wp) {WordPress 6.7.4\\Hosting compartido};
+
+% Componentes
+\node[box, above left=1.5cm and 1cm of wp] (tema) {Tema genérico\\personalizado};
+\node[box, above right=1.5cm and 1cm of wp] (woo) {WooCommerce\\Catálogo};
+\node[box, below left=1.5cm and 1cm of wp] (cf7) {Contact\\Form 7};
+\node[box, below right=1.5cm and 1cm of wp] (ga) {Google Analytics\\(UA legacy)};
+\node[box, above=2.5cm of wp] (plugins) {Plugins varios\\(+15 activos)};
+
+% Flechas
+\draw[arrow] (wp) -- (tema);
+\draw[arrow] (wp) -- (woo);
+\draw[arrow] (wp) -- (cf7);
+\draw[arrow] (wp) -- (ga);
+\draw[arrow] (wp) -- (plugins);
+
+% Usuarios
+\node[box, fill=amarillo!20, draw=amarillo!80!black, left=4cm of wp] (user) {\faIcon{user} Usuario\\visitante};
+\draw[arrow, amarillo!80!black] (user) -- (wp) node[label, above] {HTTP};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Problemas Identificados}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{rojo}}l X >{\centering\arraybackslash}p{2cm}}
+    \toprule
+    \textbf{\color{grisoscuro}Área} & \textbf{\color{grisoscuro}Problema} & \textbf{\color{grisoscuro}Impacto} \\
+    \midrule
+    Diseño & Aspecto genérico, no refleja la identidad de marca & Alto \\
+    \addlinespace
+    UX/UI & Navegación compleja con mega-menú poco intuitivo & Alto \\
+    \addlinespace
+    Velocidad & Carga lenta por exceso de plugins y assets no optimizados & Alto \\
+    \addlinespace
+    SEO & Analytics desactualizado (UA), sin Schema.org completo & Medio \\
+    \addlinespace
+    Contenido & Sin blog activo ni contenido que genere tráfico orgánico & Alto \\
+    \addlinespace
+    Interactividad & Nula --- solo catálogo estático y formulario de contacto & Alto \\
+    \addlinespace
+    Móvil & Responsivo básico, no optimizado para experiencia móvil & Medio \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 3. PROPUESTA DE REDISEÑO
+% ============================================================
+\section{Propuesta de Redise\~no}
+
+\subsection{Nueva Arquitectura del Sistema}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.2cm and 1.8cm,
+    modulo/.style={rectangle, draw=#1, fill=#1!8, rounded corners=8pt,
+                   minimum width=3.2cm, minimum height=1.3cm, font=\small, align=center,
+                   line width=1pt,
+                   drop shadow={shadow xshift=1.5pt, shadow yshift=-1.5pt, opacity=0.2}},
+    core/.style={rectangle, draw=rojo, fill=rojo!12, rounded corners=8pt,
+                 minimum width=4cm, minimum height=1.5cm, font=\small\bfseries, align=center,
+                 line width=1.5pt,
+                 drop shadow={shadow xshift=2pt, shadow yshift=-2pt, opacity=0.3}},
+    api/.style={rectangle, draw=naranja, fill=naranja!10, rounded corners=5pt,
+                minimum width=2.8cm, minimum height=0.9cm, font=\scriptsize, align=center,
+                line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, gristexto!70},
+    darrow/.style={{Stealth[length=5pt]}-{Stealth[length=5pt]}, thick, gristexto!70}
+]
+
+% Core
+\node[core] (core) {WordPress Optimizado\\+ Starter Theme Custom};
+
+% Modulos superiores
+\node[modulo=azulelectrico, above left=1.5cm and 0.5cm of core] (sim) {\faIcon{lightbulb} Simulador\\de Iluminación};
+\node[modulo=verdeok, above right=1.5cm and 0.5cm of core] (calc) {\faIcon{calculator} Calculadora\\de Cableado};
+\node[modulo=amarillo!80!black, above=2.8cm of core] (blog) {\faIcon{robot} Blog\\Automatizado};
+
+% Modulos inferiores
+\node[modulo=rojo, below left=1.5cm and 0.5cm of core] (cat) {\faIcon{box-open} Catálogo\\de Productos};
+\node[modulo=gristexto, below right=1.5cm and 0.5cm of core] (crm) {\faIcon{headset} CRM / Contacto\\WhatsApp};
+\node[modulo=naranja, below=2.8cm of core] (seo) {\faIcon{chart-line} SEO / GA4\\Analytics};
+
+% APIs externas
+\node[api, right=3.5cm of core] (openai) {API OpenAI\\(Blog IA)};
+\node[api, left=3.5cm of core] (cdn) {CDN / Cache\\Cloudflare};
+
+% Flechas
+\draw[arrow] (core) -- (sim);
+\draw[arrow] (core) -- (calc);
+\draw[arrow] (core) -- (blog);
+\draw[arrow] (core) -- (cat);
+\draw[arrow] (core) -- (crm);
+\draw[arrow] (core) -- (seo);
+\draw[darrow] (core) -- (openai);
+\draw[darrow] (core) -- (cdn);
+
+% Usuario
+\node[modulo=amarillo!80!black, above=4.5cm of core, minimum width=5cm] (user) {\faIcon{users} Usuarios / Clientes};
+\draw[darrow, amarillo!80!black] (user) -- (blog);
+\draw[arrow, amarillo!80!black, bend right=20] (user.west) to (sim.north);
+\draw[arrow, amarillo!80!black, bend left=20] (user.east) to (calc.north);
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Mapa del Sitio Propuesto}
+
+\begin{center}
+\begin{tikzpicture}[
+    level 1/.style={sibling distance=3.5cm, level distance=2cm},
+    level 2/.style={sibling distance=2.2cm, level distance=1.8cm},
+    every node/.style={rectangle, draw=gristexto!50, fill=fondoclaro, rounded corners=4pt,
+                       font=\scriptsize, align=center, minimum width=2cm, minimum height=0.7cm,
+                       drop shadow={shadow xshift=0.5pt, shadow yshift=-0.5pt, opacity=0.15}},
+    root/.style={fill=rojo!15, draw=rojo, font=\scriptsize\bfseries, minimum width=2.5cm},
+    edge from parent/.style={draw=gristexto!50, thick, -{Stealth[length=4pt]}}
+]
+
+\node[root] {Inicio}
+    child { node {Productos}
+        child { node {Iluminación} }
+        child { node {Cables} }
+        child { node {Control} }
+    }
+    child { node {Simulador\\Iluminación} }
+    child { node {Calculadora\\Cableado} }
+    child { node {Blog\\Automático} }
+    child { node {Nosotros} }
+    child { node {Contacto}
+        child { node {WhatsApp} }
+        child { node {Cotizador} }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 4. FUNCIONALIDADES INTERACTIVAS
+% ============================================================
+\section{Funcionalidades Interactivas}
+
+\subsection{Simulador de Iluminación de Espacios}
+
+\begin{cajadestacado}[Herramienta estrella: ``¿Cómo se vería mi sala?'']
+El usuario podrá visualizar en tiempo real cómo lucen diferentes tipos de iluminación (blanca/fría, cálida y amarilla) aplicados a un espacio tipo sala. Esta herramienta genera valor inmediato, incrementa el tiempo en sitio y posiciona a Eléctrica San Miguel como experto en iluminación.
+\end{cajadestacado}
+
+\subsubsection{Flujo de Usuario del Simulador}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.8cm,
+    step/.style={rectangle, draw=azulelectrico, fill=azulelectrico!8, rounded corners=6pt,
+                 minimum width=4cm, minimum height=1.1cm, font=\small, align=center,
+                 line width=1pt},
+    decision/.style={diamond, draw=rojo, fill=rojo!8, aspect=2.5,
+                     font=\small, align=center, inner sep=2pt, line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, gristexto!70},
+    note/.style={rectangle, draw=verdeok!60, fill=verdeok!5, rounded corners=3pt,
+                 font=\scriptsize, align=center, dashed}
+]
+
+\node[step] (s1) {1. Seleccionar tipo\\de espacio};
+\node[step, below=of s1] (s2) {2. Elegir temperatura\\de color};
+\node[step, below=of s2] (s3) {3. Ajustar intensidad\\con slider};
+\node[step, below=of s3] (s4) {4. Ver resultado\\en tiempo real};
+\node[decision, below=1cm of s4] (d1) {¿Le gusta?};
+\node[step, below left=1cm and 1.5cm of d1] (s5a) {Cambiar\\opciones};
+\node[step, below right=1cm and 1.5cm of d1] (s5b) {Ver productos\\recomendados};
+\node[step, below=1cm of s5b] (s6) {Agregar al carrito\\o solicitar cotización};
+
+% Notas laterales
+\node[note, right=2cm of s1] (n1) {Sala, cocina, recámara,\\oficina, baño};
+\node[note, right=2cm of s2] (n2) {Luz fría (6500K)\\Neutra (4000K)\\Cálida (2700K)};
+\node[note, right=2cm of s3] (n3) {Control deslizante\\0\% -- 100\%};
+
+\draw[arrow] (s1) -- (s2);
+\draw[arrow] (s2) -- (s3);
+\draw[arrow] (s3) -- (s4);
+\draw[arrow] (s4) -- (d1);
+\draw[arrow] (d1) -| node[above left, font=\scriptsize] {No} (s5a);
+\draw[arrow] (d1) -| node[above right, font=\scriptsize] {Sí} (s5b);
+\draw[arrow] (s5a) |- (s2);
+\draw[arrow] (s5b) -- (s6);
+
+\draw[gristexto!30, dashed] (s1) -- (n1);
+\draw[gristexto!30, dashed] (s2) -- (n2);
+\draw[gristexto!30, dashed] (s3) -- (n3);
+
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Implementación Técnica del Simulador}
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Frontend:} Componente React/JS embebido en WordPress vía shortcode
+    \item \textbf{Motor visual:} Canvas HTML5 con filtros CSS y overlays de color
+    \item \textbf{Imágenes base:} 5 escenas pre-renderizadas (sala, cocina, recámara, oficina, baño)
+    \item \textbf{Temperaturas de color:}
+    \begin{itemize}
+        \item Luz fría/blanca: 6500K --- filtro azulado (\texttt{filter: hue-rotate})
+        \item Luz neutra: 4000K --- sin filtro, exposición natural
+        \item Luz cálida/amarilla: 2700K --- filtro ámbar (\texttt{overlay rgba(255,180,50)})
+    \end{itemize}
+    \item \textbf{Control de intensidad:} Slider que modifica opacidad del overlay (0\%--100\%)
+    \item \textbf{Resultado:} Vinculación directa con productos del catálogo (focos, luminarias)
+\end{itemize}
+
+\newpage
+
+\subsection{Calculadora de Tipo de Cable}
+
+\begin{cajadestacado}[Asistente: ``¿Qué cable necesito para mi casa?'']
+Herramienta interactiva donde el usuario responde preguntas simples sobre su instalación eléctrica y obtiene una recomendación profesional del tipo y calibre de cable adecuado, con enlace directo a los productos disponibles.
+\end{cajadestacado}
+
+\subsubsection{Flujo del Asistente de Cableado}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.6cm and 2cm,
+    question/.style={rectangle, draw=verdeok, fill=verdeok!8, rounded corners=6pt,
+                     minimum width=5cm, minimum height=0.9cm, font=\small, align=center, line width=1pt},
+    result/.style={rectangle, draw=rojo, fill=rojo!8, rounded corners=6pt,
+                   minimum width=5cm, minimum height=1.2cm, font=\small\bfseries, align=center, line width=1.5pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, verdeok!70}
+]
+
+\node[question] (q1) {\faIcon{question-circle} ¿Uso residencial o comercial?};
+\node[question, below=of q1] (q2) {\faIcon{question-circle} ¿Qué aparatos conectarás?};
+\node[question, below=of q2] (q3) {\faIcon{question-circle} ¿Distancia aproximada del circuito?};
+\node[question, below=of q3] (q4) {\faIcon{question-circle} ¿Interior o intemperie?};
+\node[question, below=of q4] (q5) {\faIcon{question-circle} ¿Instalación en tubería o aparente?};
+
+\node[result, below=1cm of q5] (res) {\faIcon{check-circle} Recomendación:\\Cable THW calibre 12 AWG\\para circuito de iluminación};
+
+\draw[arrow] (q1) -- (q2);
+\draw[arrow] (q2) -- (q3);
+\draw[arrow] (q3) -- (q4);
+\draw[arrow] (q4) -- (q5);
+\draw[arrow] (q5) -- (res);
+
+% Barra lateral con opciones ejemplo
+\node[rectangle, draw=gristexto!30, fill=fondoclaro, rounded corners=3pt,
+      font=\scriptsize, align=left, right=2.5cm of q2, text width=4cm] (opts) {
+    \textbf{Aparatos comunes:}\\
+    \faIcon{check} Iluminación\\
+    \faIcon{check} Contactos generales\\
+    \faIcon{check} Aire acondicionado\\
+    \faIcon{check} Estufa eléctrica\\
+    \faIcon{check} Motor/bomba de agua\\
+    \faIcon{check} Calentador eléctrico
+};
+\draw[gristexto!30, dashed] (q2) -- (opts);
+
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Lógica de Recomendación}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{l l l X}
+    \toprule
+    \textbf{Uso} & \textbf{Calibre} & \textbf{Amperaje} & \textbf{Aplicación típica} \\
+    \midrule
+    Iluminación & 14 AWG & 15A & Circuitos de lámparas y focos \\
+    Contactos generales & 12 AWG & 20A & Enchufes para electrodomésticos \\
+    Aire acondicionado & 10 AWG & 30A & Equipos de clima, secadoras \\
+    Estufa / horno & 8 AWG & 40A & Electrodomésticos de alta potencia \\
+    Acometida principal & 6 AWG & 55A & Alimentación principal del hogar \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+La calculadora incorpora la \textbf{NOM-001-SEDE} vigente para garantizar que las recomendaciones cumplan con la normatividad eléctrica mexicana.
+
+\newpage
+
+\subsection{Blog Automático con Inteligencia Artificial}
+
+\begin{cajadestacado}[Blog inteligente con generación asistida por IA]
+Sistema de generación de contenido que crea borradores de artículos sobre temas eléctricos, tendencias en iluminación, consejos de seguridad y guías de instalación. El contenido se genera automáticamente y queda como borrador para revisión antes de publicar.
+\end{cajadestacado}
+
+\subsubsection{Diagrama del Flujo de Publicación}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    process/.style={rectangle, draw=naranja, fill=naranja!8, rounded corners=6pt,
+                    minimum width=3.5cm, minimum height=1cm, font=\small, align=center, line width=1pt},
+    auto/.style={rectangle, draw=azulelectrico, fill=azulelectrico!8, rounded corners=6pt,
+                 minimum width=3.5cm, minimum height=1cm, font=\small, align=center, line width=1pt},
+    human/.style={rectangle, draw=verdeok, fill=verdeok!8, rounded corners=6pt,
+                  minimum width=3.5cm, minimum height=1cm, font=\small, align=center, line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, gristexto!70}
+]
+
+% Flujo
+\node[auto] (cron) {\faIcon{clock} Cron semanal\\(2 artículos/semana)};
+\node[auto, right=of cron] (api) {\faIcon{robot} API OpenAI\\genera borrador};
+\node[auto, right=of api] (seo) {\faIcon{search} Optimización\\SEO automática};
+
+\node[human, below=1.5cm of cron] (review) {\faIcon{user-edit} Revisión\\del admin};
+\node[process, below=1.5cm of api] (edit) {\faIcon{edit} Edición\\(si necesario)};
+\node[human, below=1.5cm of seo] (publish) {\faIcon{globe} Publicación\\con un clic};
+
+\node[auto, below=1.5cm of edit] (social) {\faIcon{share-alt} Distribución\\redes sociales};
+
+\draw[arrow] (cron) -- (api);
+\draw[arrow] (api) -- (seo);
+\draw[arrow] (seo) -- (publish);
+\draw[arrow] (publish) -- (edit);
+\draw[arrow] (edit) -- (review);
+\draw[arrow] (review) -- (social);
+
+% Etiquetas
+\node[font=\scriptsize\color{azulelectrico}, above=0.1cm of cron] {\textit{Automático}};
+\node[font=\scriptsize\color{verdeok}, above=0.1cm of review] {\textit{Manual}};
+
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Categorías de Contenido Automático}
+
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+    \item \textbf{Guías prácticas:} ``Cómo instalar un apagador de 3 vías'', ``Guía de calibres de cable''
+    \item \textbf{Tendencias:} ``Iluminación LED inteligente 2026'', ``Domótica para el hogar''
+    \item \textbf{Seguridad eléctrica:} ``5 señales de que tu instalación necesita revisión''
+    \item \textbf{Comparativas:} ``LED vs Fluorescente: cuál conviene más''
+    \item \textbf{Normatividad:} Actualizaciones de NOM y regulaciones eléctricas
+    \item \textbf{Estacionales:} Preparación eléctrica para temporada de lluvias, calor, etc.
+\end{itemize}
+
+\subsubsection{Especificaciones Técnicas del Blog IA}
+
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+    \item \textbf{Motor:} API de OpenAI (GPT-4o-mini) --- bajo costo, alta calidad
+    \item \textbf{Frecuencia:} 2 artículos por semana (configurable)
+    \item \textbf{Flujo:} Generación $\rightarrow$ borrador en WordPress $\rightarrow$ revisión humana $\rightarrow$ publicación
+    \item \textbf{SEO:} Generación automática de meta-description, título SEO y etiquetas
+    \item \textbf{Imágenes:} Banco de imágenes integrado o generación con DALL-E (opcional)
+    \item \textbf{Costo mensual estimado API:} \$50--\$100 MXN (aprox. 8 artículos/mes)
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% 5. DISEÑO VISUAL
+% ============================================================
+\section{Diseño Visual y Experiencia de Usuario}
+
+\subsection{Nueva Paleta de Colores}
+
+\begin{center}
+\begin{tikzpicture}
+    % Colores principales
+    \fill[rojo] (0,0) rectangle (2.5,2);
+    \node[white, font=\small\bfseries] at (1.25,1.3) {Rojo Primario};
+    \node[white, font=\scriptsize] at (1.25,0.7) {\#CC0000};
+
+    \fill[grisoscuro] (3,0) rectangle (5.5,2);
+    \node[white, font=\small\bfseries] at (4.25,1.3) {Gris Oscuro};
+    \node[white, font=\scriptsize] at (4.25,0.7) {\#2B2B2B};
+
+    \fill[fondoclaro] (6,0) rectangle (8.5,2);
+    \draw[gristexto!30] (6,0) rectangle (8.5,2);
+    \node[grisoscuro, font=\small\bfseries] at (7.25,1.3) {Fondo Claro};
+    \node[gristexto, font=\scriptsize] at (7.25,0.7) {\#F3F7F9};
+
+    \fill[azulelectrico] (9,0) rectangle (11.5,2);
+    \node[white, font=\small\bfseries] at (10.25,1.3) {Azul Acento};
+    \node[white, font=\scriptsize] at (10.25,0.7) {\#0066CC};
+
+    % Secundarios
+    \fill[verdeok] (0,-1) rectangle (2.5,-2.5);
+    \node[white, font=\scriptsize\bfseries] at (1.25,-1.45) {Éxito};
+    \node[white, font=\scriptsize] at (1.25,-2.05) {\#28A745};
+
+    \fill[amarillo] (3,-1) rectangle (5.5,-2.5);
+    \node[grisoscuro, font=\scriptsize\bfseries] at (4.25,-1.45) {Advertencia};
+    \node[grisoscuro, font=\scriptsize] at (4.25,-2.05) {\#FFC107};
+
+    \fill[naranja] (6,-1) rectangle (8.5,-2.5);
+    \node[white, font=\scriptsize\bfseries] at (7.25,-1.45) {Destacado};
+    \node[white, font=\scriptsize] at (7.25,-2.05) {\#FF6B35};
+
+    \fill[gristexto] (9,-1) rectangle (11.5,-2.5);
+    \node[white, font=\scriptsize\bfseries] at (10.25,-1.45) {Texto};
+    \node[white, font=\scriptsize] at (10.25,-2.05) {\#5D6576};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Principios de Diseño}
+
+\begin{enumerate}[leftmargin=*, itemsep=6pt]
+    \item \textbf{Mobile First:} Diseño pensado primero para dispositivos móviles, luego adaptado a desktop. Más del 65\% del tráfico en México es móvil.
+
+    \item \textbf{Velocidad ante todo:} Objetivo de carga menor a 3 segundos. Imágenes WebP, lazy loading, CSS crítico inline, JavaScript diferido.
+
+    \item \textbf{Jerarquía visual clara:} Uso de whitespace generoso, tipografía con escala definida y CTAs (llamadas a acción) destacados en rojo.
+
+    \item \textbf{Accesibilidad:} Contraste WCAG AA, navegación por teclado, etiquetas ARIA, texto alternativo en imágenes.
+
+    \item \textbf{Confianza:} Secciones de testimonios, marcas manejadas, certificaciones y años de experiencia visibles.
+\end{enumerate}
+
+\subsection{Wireframe de la Página de Inicio}
+
+\begin{center}
+\begin{tikzpicture}[
+    section/.style={rectangle, draw=gristexto!40, fill=#1, minimum width=12cm,
+                    minimum height=#2, font=\small, align=center, rounded corners=2pt}
+]
+
+\node[section={rojo!10}{1.5cm}] (hero) at (0,0) {
+    \textbf{HERO} --- Slider con promociones\\
+    CTA: ``Conoce nuestro simulador de iluminación''
+};
+
+\node[section={azulelectrico!8}{1.8cm}, below=0.3cm of hero] (tools) {
+    \textbf{3 TARJETAS INTERACTIVAS}\\
+    Simulador | Calculadora de Cable | Cotizador Rápido
+};
+
+\node[section={fondoclaro}{1.2cm}, below=0.3cm of tools] (cats) {
+    \textbf{CATEGORÍAS DESTACADAS}\\
+    Iluminación | Cables | Automatización | Control
+};
+
+\node[section={verdeok!8}{1.2cm}, below=0.3cm of cats] (prods) {
+    \textbf{PRODUCTOS DESTACADOS}\\
+    Grid de 4--8 productos con precios
+};
+
+\node[section={amarillo!15}{1cm}, below=0.3cm of prods] (blog) {
+    \textbf{ÚLTIMOS ARTÍCULOS DEL BLOG}\\
+    3 cards con artículos recientes
+};
+
+\node[section={gristexto!8}{1cm}, below=0.3cm of blog] (trust) {
+    \textbf{CONFIANZA} --- Marcas | Testimonios | A\~nos de experiencia
+};
+
+\node[section={grisoscuro!15}{0.8cm}, below=0.3cm of trust] (footer) {
+    \textbf{FOOTER} --- Contacto | Mapa | Redes | WhatsApp flotante
+};
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 6. STACK TECNOLÓGICO
+% ============================================================
+\section{Stack Tecnológico}
+
+\subsection{Diagrama de Tecnologías}
+
+\begin{center}
+\begin{tikzpicture}[
+    tech/.style={rectangle, draw=#1, fill=#1!10, rounded corners=5pt,
+                 minimum width=3cm, minimum height=0.9cm, font=\small, align=center,
+                 line width=0.8pt},
+    layer/.style={rectangle, draw=gristexto!20, fill=gristexto!3, rounded corners=8pt,
+                  minimum width=14cm, minimum height=2cm, font=\small\bfseries\color{gristexto}},
+    layerlabel/.style={font=\small\bfseries\color{gristexto}, anchor=west}
+]
+
+% Frontend
+\node[layer, minimum height=1.8cm] (fl) at (0, 4) {};
+\node[layerlabel] at (-6.5, 4.6) {FRONTEND};
+\node[tech=azulelectrico] at (-4, 4) {HTML5 / CSS3};
+\node[tech=amarillo!80!black] at (0, 4) {JavaScript ES6+};
+\node[tech=azulelectrico] at (4, 4) {React (simulador)};
+
+% CMS
+\node[layer, minimum height=1.8cm] (cl) at (0, 1.8) {};
+\node[layerlabel] at (-6.5, 2.4) {CMS};
+\node[tech=rojo] at (-4, 1.8) {WordPress 6.x};
+\node[tech=verdeok] at (0, 1.8) {WooCommerce};
+\node[tech=naranja] at (4, 1.8) {Starter Theme};
+
+% Backend / APIs
+\node[layer, minimum height=1.8cm] (bl) at (0, -0.4) {};
+\node[layerlabel] at (-6.5, 0.2) {BACKEND / APIs};
+\node[tech=gristexto] at (-4, -0.4) {PHP 8.2+};
+\node[tech=naranja] at (0, -0.4) {REST API WP};
+\node[tech=azulelectrico] at (4, -0.4) {OpenAI API};
+
+% Infraestructura
+\node[layer, minimum height=1.8cm] (il) at (0, -2.6) {};
+\node[layerlabel] at (-6.5, -2) {INFRAESTRUCTURA};
+\node[tech=verdeok] at (-4, -2.6) {Hosting VPS};
+\node[tech=naranja] at (0, -2.6) {Cloudflare CDN};
+\node[tech=azulelectrico] at (4, -2.6) {SSL / HTTP2};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Justificación de WordPress}
+
+Se recomienda mantener WordPress como CMS por las siguientes razones:
+
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+    \item \textbf{Familiaridad:} El equipo de Eléctrica San Miguel ya conoce el panel de WordPress
+    \item \textbf{Ecosistema:} WooCommerce para catálogo, miles de plugins disponibles
+    \item \textbf{Costo:} Sin licencias adicionales de software
+    \item \textbf{Comunidad:} Soporte masivo y documentación abundante
+    \item \textbf{Lo que cambia:} Tema 100\% personalizado (no genérico), optimización profunda, eliminación de plugins innecesarios, código limpio
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% 7. PLAN DE TRABAJO
+% ============================================================
+\section{Plan de Trabajo}
+
+\subsection{Diagrama de Gantt}
+
+\begin{center}
+\begin{tikzpicture}[
+    x=0.95cm, y=-1cm,
+    phase/.style={fill=#1, rounded corners=3pt, minimum height=0.6cm, anchor=west,
+                  font=\scriptsize\color{white}, inner sep=4pt},
+    label/.style={font=\small, anchor=east, text width=4cm, align=right},
+    week/.style={font=\scriptsize\color{gristexto}}
+]
+
+% Encabezado semanas
+\foreach \i/\s in {1/S1, 2/S2, 3/S3, 4/S4, 5/S5, 6/S6, 7/S7, 8/S8, 9/S9, 10/S10} {
+    \node[week] at (\i, 0) {\s};
+    \draw[gristexto!15] (\i-0.5, 0.3) -- (\i-0.5, -8.5);
+}
+
+% Fases
+\node[label] at (0, 1) {Análisis y UX/UI};
+\node[phase=azulelectrico, minimum width=2*0.95cm] at (0.5, 1) {Sem 1--2};
+
+\node[label] at (0, 2) {Diseño visual};
+\node[phase=naranja, minimum width=2*0.95cm] at (2.5, 2) {Sem 3--4};
+
+\node[label] at (0, 3) {Desarrollo base};
+\node[phase=rojo, minimum width=2*0.95cm] at (4.5, 3) {Sem 5--6};
+
+\node[label] at (0, 4) {Simulador iluminación};
+\node[phase=amarillo!80!black, minimum width=1.5*0.95cm] at (4.5, 4) {Sem 5--6};
+
+\node[label] at (0, 5) {Calculadora cables};
+\node[phase=verdeok, minimum width=1*0.95cm] at (5.5, 5) {Sem 6};
+
+\node[label] at (0, 6) {Blog automático};
+\node[phase=azulelectrico, minimum width=1.5*0.95cm] at (6.5, 6) {Sem 7--8};
+
+\node[label] at (0, 7) {Integración y testing};
+\node[phase=gristexto, minimum width=1.5*0.95cm] at (7.5, 7) {Sem 8--9};
+
+\node[label] at (0, 8) {Lanzamiento};
+\node[phase=rojo, minimum width=1*0.95cm] at (9.5, 8) {S10};
+
+% Linea de hoy
+% \draw[rojo, dashed, thick] (1.5, 0.3) -- (1.5, -8.5);
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Detalle de Fases}
+
+\begin{enumerate}[leftmargin=*, itemsep=8pt]
+    \item \textbf{Semanas 1--2: Análisis y Diseño UX/UI}
+    \begin{itemize}[itemsep=2pt]
+        \item Auditoría completa del sitio actual (SEO, velocidad, contenido)
+        \item Definición de wireframes y flujos de usuario
+        \item Mapa de sitio definitivo y arquitectura de información
+        \item Entregable: documento de wireframes aprobado
+    \end{itemize}
+
+    \item \textbf{Semanas 3--4: Diseño Visual}
+    \begin{itemize}[itemsep=2pt]
+        \item Diseño de interfaz en alta fidelidad (Figma)
+        \item Diseño responsivo (móvil, tablet, desktop)
+        \item Diseño de las herramientas interactivas
+        \item Entregable: mockups finales aprobados
+    \end{itemize}
+
+    \item \textbf{Semanas 5--6: Desarrollo Core + Simulador}
+    \begin{itemize}[itemsep=2pt]
+        \item Desarrollo del tema personalizado de WordPress
+        \item Configuración de WooCommerce optimizado
+        \item Desarrollo del simulador de iluminación (React + Canvas)
+        \item Desarrollo de la calculadora de cableado
+    \end{itemize}
+
+    \item \textbf{Semanas 7--8: Blog IA + Integraciones}
+    \begin{itemize}[itemsep=2pt]
+        \item Desarrollo del sistema de blog automático
+        \item Integración con API de OpenAI
+        \item Configuración de GA4, Search Console, Schema.org
+        \item Integración de WhatsApp Business
+    \end{itemize}
+
+    \item \textbf{Semanas 9--10: Testing y Lanzamiento}
+    \begin{itemize}[itemsep=2pt]
+        \item Pruebas en múltiples dispositivos y navegadores
+        \item Optimización de rendimiento (PageSpeed $>$ 90)
+        \item Migración de contenido y productos existentes
+        \item Lanzamiento, monitoreo y capacitación
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+% 8. COTIZACIÓN
+% ============================================================
+\section{Cotización}
+
+\subsection{Desglose de Inversión}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.8cm} X >{\raggedleft\arraybackslash}p{2.5cm}}
+    \toprule
+    \textbf{No.} & \textbf{Concepto} & \textbf{Precio MXN} \\
+    \midrule
+    1 & \textbf{Análisis, UX/UI y Arquitectura de Información} \newline
+        Auditoría del sitio actual, wireframes, flujos de usuario, mapa de sitio
+        & \$3,500.00 \\
+    \midrule
+    2 & \textbf{Diseño Visual de Alta Fidelidad} \newline
+        Mockups en Figma para todas las páginas (home, productos, herramientas interactivas, blog, contacto). Versiones mobile y desktop
+        & \$4,000.00 \\
+    \midrule
+    3 & \textbf{Desarrollo del Tema WordPress Personalizado} \newline
+        Tema starter limpio, optimizado, responsivo. Configuración de WooCommerce, catálogo de productos, formularios de contacto
+        & \$5,000.00 \\
+    \midrule
+    4 & \textbf{Simulador de Iluminación Interactivo} \newline
+        Componente React con Canvas HTML5, 5 escenarios de espacios, 3 temperaturas de color, slider de intensidad, vinculación con productos
+        & \$4,500.00 \\
+    \midrule
+    5 & \textbf{Calculadora de Tipo de Cable} \newline
+        Asistente paso a paso, lógica de recomendación basada en NOM-001-SEDE, vinculación con catálogo de productos
+        & \$2,500.00 \\
+    \midrule
+    6 & \textbf{Sistema de Blog Automático con IA} \newline
+        Integración con API OpenAI, cron de generación, panel de revisión, optimización SEO automática, categorización inteligente
+        & \$3,500.00 \\
+    \midrule
+    7 & \textbf{SEO, Analytics y Optimización} \newline
+        Migración a GA4, Search Console, Schema.org completo, optimización de velocidad (PageSpeed $>$ 90), SSL, CDN
+        & \$1,500.00 \\
+    \midrule
+    8 & \textbf{Migración, Testing y Lanzamiento} \newline
+        Migración de contenido existente, pruebas cross-browser, capacitación de uso del panel y herramientas
+        & \$1,000.00 \\
+    \midrule
+    \midrule
+    & \textbf{SUBTOTAL} & \textbf{\$25,500.00} \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{cajaprecio}
+\begin{center}
+    {\LARGE\bfseries\color{verdeok} INVERSIÓN TOTAL: \$25,500.00 MXN}\\[8pt]
+    {\small\color{gristexto} (Veinticinco mil quinientos pesos 00/100 M.N.)}\\[4pt]
+    {\small\color{gristexto} * IVA incluido en el precio total}
+\end{center}
+\end{cajaprecio}
+
+\subsection{Esquema de Pagos}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.3cm,
+    pago/.style={rectangle, draw=#1, fill=#1!10, rounded corners=6pt,
+                 minimum width=4.5cm, minimum height=1.5cm, font=\small, align=center,
+                 line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, very thick, gristexto!50}
+]
+
+\node[pago=rojo] (p1) {\textbf{Pago 1: 40\%}\\{\large\bfseries \$10,200}\\Al iniciar el proyecto};
+\node[pago=naranja, right=of p1] (p2) {\textbf{Pago 2: 30\%}\\{\large\bfseries \$7,650}\\Al aprobar diseño};
+\node[pago=verdeok, right=of p2] (p3) {\textbf{Pago 3: 30\%}\\{\large\bfseries \$7,650}\\Al entregar el sitio};
+
+\draw[arrow] (p1) -- (p2);
+\draw[arrow] (p2) -- (p3);
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Costos Recurrentes (mensuales, opcionales)}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{X >{\raggedleft\arraybackslash}p{3cm}}
+    \toprule
+    \textbf{Concepto} & \textbf{Costo mensual} \\
+    \midrule
+    Hosting VPS optimizado para WordPress & \$250 -- \$500 MXN \\
+    API OpenAI para blog automático (8 artículos/mes) & \$50 -- \$100 MXN \\
+    Mantenimiento y actualizaciones (opcional) & \$1,500 MXN \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 9. FUNCIONALIDADES ADICIONALES (OPCIONALES)
+% ============================================================
+\section{Funcionalidades Adicionales (Opcionales)}
+
+Las siguientes funcionalidades pueden agregarse al proyecto por un costo adicional:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{X >{\raggedleft\arraybackslash}p{2.5cm}}
+    \toprule
+    \textbf{Funcionalidad} & \textbf{Costo MXN} \\
+    \midrule
+    \textbf{Chatbot con IA} --- Asistente virtual 24/7 para resolver dudas de clientes sobre productos y electricidad & \$4,000.00 \\
+    \addlinespace
+    \textbf{Cotizador en línea} --- Formulario avanzado donde el cliente describe su proyecto y recibe una cotización estimada automática & \$3,000.00 \\
+    \addlinespace
+    \textbf{Sistema de puntos/lealtad} --- Programa de puntos para clientes frecuentes con descuentos & \$3,500.00 \\
+    \addlinespace
+    \textbf{App PWA} --- Convertir el sitio en Progressive Web App instalable en celulares & \$2,000.00 \\
+    \addlinespace
+    \textbf{Integración con redes sociales} --- Publicación automática de productos y artículos en Facebook/Instagram & \$1,500.00 \\
+    \addlinespace
+    \textbf{Sistema de reseñas verificadas} --- Módulo de opiniones de clientes con verificación de compra & \$1,500.00 \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 10. GARANTÍAS Y SOPORTE
+% ============================================================
+\section{Garantías y Soporte}
+
+\begin{cajainfo}[Lo que incluye esta propuesta]
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \faIcon{check-circle} \textbf{30 días de soporte gratuito} posterior al lanzamiento para corrección de bugs
+    \item \faIcon{check-circle} \textbf{Capacitación completa} en el uso del panel de WordPress, herramientas interactivas y blog automático (sesión de 2 horas por videollamada)
+    \item \faIcon{check-circle} \textbf{Manual de usuario} digital con instrucciones paso a paso
+    \item \faIcon{check-circle} \textbf{Código fuente completo} --- el cliente es dueño de todo el código desarrollado
+    \item \faIcon{check-circle} \textbf{Optimización garantizada} --- PageSpeed Insights $>$ 90 en móvil y desktop
+    \item \faIcon{check-circle} \textbf{2 rondas de revisiones} incluidas en cada fase de diseño
+    \item \faIcon{check-circle} \textbf{Compatibilidad} con Chrome, Firefox, Safari, Edge y dispositivos iOS/Android
+\end{itemize}
+\end{cajainfo}
+
+\subsection{Condiciones}
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item El contenido textual y fotográfico de productos será proporcionado por el cliente
+    \item Las imágenes del simulador de iluminación son escenas genéricas de alta calidad (no fotografías del local)
+    \item El hosting actual debe permitir PHP 8.2+ y MySQL 8.0+ (o se recomienda migración)
+    \item El costo de la API de OpenAI es un gasto operativo mensual del cliente
+    \item Cambios de alcance posteriores a la aprobación del diseño pueden generar costos adicionales
+\end{itemize}
+
+\subsection{Vigencia}
+
+Esta propuesta tiene una vigencia de \textbf{30 días naturales} a partir de la fecha de emisión.
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[rojo, line width=1.5pt, rounded corners=10pt] (0,0) rectangle (14, -3.5);
+    \node[font=\large\bfseries\color{rojo}, anchor=north] at (7, -0.3) {¿Listo para transformar su presencia digital?};
+    \node[font=\normalsize\color{gristexto}, anchor=north, text width=12cm, align=center] at (7, -1.2) {
+        Eléctrica San Miguel merece un sitio web que refleje su calidad y experiencia.
+        Estas herramientas interactivas posicionarán su negocio como líder digital
+        en el sector eléctrico de la región.
+    };
+    \node[font=\small\color{gristexto}, anchor=north] at (7, -2.8) {
+        \faIcon{phone} Contáctenos para agendar una reunión \quad | \quad
+        \faIcon{envelope} Responderemos en menos de 24 horas
+    };
+\end{tikzpicture}
+\end{center}
+
+\end{document}

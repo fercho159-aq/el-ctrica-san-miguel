@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eléctrica San Miguel — Soluciones Eléctricas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#inicio" class="nav-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 2L6 18h8l-2 12 12-16h-8l2-12z" fill="#CC0000" stroke="#CC0000" stroke-width="1"/>
+            </svg>
+            <span>Eléctrica <strong>San Miguel</strong></span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#inicio" class="nav-link active">Inicio</a>
+            <a href="#productos" class="nav-link">Productos</a>
+            <a href="#simulador" class="nav-link">Simulador</a>
+            <a href="#calculadora" class="nav-link">Calculadora</a>
+            <a href="#blog" class="nav-link">Blog</a>
+            <a href="#contacto" class="nav-link">Contacto</a>
+        </div>
+        <div class="nav-actions">
+            <button class="dark-toggle" id="darkToggle" aria-label="Alternar modo oscuro">
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Tecnología de vanguardia
+        </div>
+        <h1 class="hero-title">
+            Tu experto en<br>
+            <span class="hero-accent">soluciones eléctricas</span>
+        </h1>
+        <p class="hero-subtitle">Iluminación inteligente, cables de calidad y herramientas interactivas para tu hogar o negocio. Más de 15 años llevando energía a San Miguel.</p>
+        <div class="hero-cta">
+            <a href="#simulador" class="btn btn-primary btn-lg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                Simulador de Iluminación
+            </a>
+            <a href="#calculadora" class="btn btn-outline btn-lg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+                Calculadora de Cable
+            </a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-num">+2,000</span>
+                <span class="hero-stat-label">Productos</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">+5,000</span>
+                <span class="hero-stat-label">Clientes</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">15+</span>
+                <span class="hero-stat-label">Años</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HERRAMIENTAS -->
+<section class="tools-section" id="herramientas">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Herramientas Interactivas</span>
+            <h2 class="section-title">Tecnología al servicio de tu proyecto</h2>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-card tool-card--sim reveal">
+                <div class="tool-card-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </div>
+                <h3>Simulador de Iluminación</h3>
+                <p>Visualiza en tiempo real cómo lucen diferentes tipos de luz en tu espacio. Elige temperatura de color e intensidad.</p>
+                <a href="#simulador" class="tool-card-btn">Probar ahora →</a>
+            </div>
+            <div class="tool-card tool-card--calc reveal">
+                <div class="tool-card-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+                </div>
+                <h3>Calculadora de Cable</h3>
+                <p>Responde preguntas simples sobre tu instalación y obtén la recomendación profesional del cable adecuado.</p>
+                <a href="#calculadora" class="tool-card-btn">Probar ahora →</a>
+            </div>
+            <div class="tool-card tool-card--quote reveal">
+                <div class="tool-card-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>Cotizador Rápido</h3>
+                <p>Describe tu proyecto eléctrico y recibe una cotización estimada al instante basada en nuestro catálogo.</p>
+                <a href="#contacto" class="tool-card-btn">Probar ahora →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SIMULADOR -->
+<section class="simulator-section" id="simulador">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Herramienta Estrella</span>
+            <h2 class="section-title">Simulador de Iluminación</h2>
+            <p class="section-desc">¿Cómo se vería tu espacio con diferente iluminación? Selecciona tipo de habitación, temperatura de color e intensidad.</p>
+        </div>
+        <div class="sim-layout">
+            <div class="sim-preview reveal">
+                <div class="sim-room" id="simRoom">
+                    <div class="sim-room-svg">
+                        <!-- Room SVG illustration -->
+                        <svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Back wall -->
+                            <rect x="50" y="40" width="500" height="250" fill="#E8E4DF" stroke="#D0CBC5" stroke-width="1"/>
+                            <!-- Window -->
+                            <rect x="200" y="70" width="200" height="140" rx="2" fill="#C8DEF0" stroke="#A0B4C8" stroke-width="2"/>
+                            <line x1="300" y1="70" x2="300" y2="210" stroke="#A0B4C8" stroke-width="2"/>
+                            <line x1="200" y1="140" x2="400" y2="140" stroke="#A0B4C8" stroke-width="2"/>
+                            <!-- Curtains -->
+                            <path d="M190 60 Q185 140 192 220 L198 220 Q195 140 200 60Z" fill="#C49A6C" opacity="0.6"/>
+                            <path d="M410 60 Q415 140 408 220 L402 220 Q405 140 400 60Z" fill="#C49A6C" opacity="0.6"/>
+                            <!-- Floor -->
+                            <path d="M0 290 L50 290 L50 40 L0 100Z" fill="#D5CFC8" stroke="#C0BAB3" stroke-width="1"/>
+                            <path d="M600 290 L550 290 L550 40 L600 100Z" fill="#D5CFC8" stroke="#C0BAB3" stroke-width="1"/>
+                            <rect x="0" y="290" width="600" height="110" fill="#C4A882"/>
+                            <path d="M0 290 L50 290 L550 290 L600 290 L600 400 L0 400Z" fill="#B89B72" opacity="0.4"/>
+                            <!-- Floor lines -->
+                            <line x1="0" y1="320" x2="600" y2="320" stroke="#A8906E" stroke-width="0.5" opacity="0.3"/>
+                            <line x1="0" y1="350" x2="600" y2="350" stroke="#A8906E" stroke-width="0.5" opacity="0.3"/>
+                            <line x1="0" y1="380" x2="600" y2="380" stroke="#A8906E" stroke-width="0.5" opacity="0.3"/>
+                            <!-- Couch -->
+                            <rect x="100" y="240" width="200" height="50" rx="8" fill="#7A6B5D"/>
+                            <rect x="95" y="230" width="210" height="20" rx="6" fill="#8B7C6E"/>
+                            <rect x="95" y="250" width="20" height="45" rx="4" fill="#6B5C4E"/>
+                            <rect x="285" y="250" width="20" height="45" rx="4" fill="#6B5C4E"/>
+                            <!-- Cushions -->
+                            <rect x="115" y="235" width="50" height="15" rx="5" fill="#A0524D"/>
+                            <rect x="180" y="235" width="50" height="15" rx="5" fill="#4A7C6F"/>
+                            <!-- Side table -->
+                            <rect x="340" y="260" width="50" height="35" rx="2" fill="#5C4A3A"/>
+                            <rect x="338" y="257" width="54" height="5" rx="2" fill="#6B5848"/>
+                            <!-- Lamp on table -->
+                            <rect x="360" y="220" width="10" height="37" fill="#8B8178"/>
+                            <path d="M350 220 L380 220 L372 195 L358 195Z" fill="#E8DDD0" class="sim-lampshade"/>
+                            <!-- Ceiling light -->
+                            <line x1="300" y1="0" x2="300" y2="25" stroke="#888" stroke-width="2"/>
+                            <ellipse cx="300" cy="30" rx="25" ry="8" fill="#D4CCC4" class="sim-ceiling-light"/>
+                            <!-- Light bulb glow (animated) -->
+                            <ellipse cx="300" cy="32" rx="12" ry="5" class="sim-bulb-glow" fill="transparent"/>
+                            <!-- Plant -->
+                            <rect x="470" y="260" width="30" height="35" rx="3" fill="#B85C38"/>
+                            <ellipse cx="485" cy="250" rx="25" ry="20" fill="#4A8C5C"/>
+                            <ellipse cx="478" cy="245" rx="15" ry="14" fill="#5AA86C"/>
+                            <!-- Picture frame -->
+                            <rect x="100" y="80" width="60" height="80" rx="2" fill="#D4CCC4" stroke="#8B7C6E" stroke-width="3"/>
+                            <rect x="108" y="88" width="44" height="64" fill="#A8C4A0"/>
+                            <circle cx="130" cy="110" r="12" fill="#88B080"/>
+                            <path d="M108 140 L125 120 L140 135 L152 125 L152 152 L108 152Z" fill="#6A9460"/>
+                        </svg>
+                        <!-- Light overlay -->
+                        <div class="sim-light-overlay" id="simLightOverlay"></div>
+                    </div>
+                    <div class="sim-room-label" id="simRoomLabel">Sala de estar</div>
+                </div>
+            </div>
+            <div class="sim-controls reveal">
+                <div class="sim-control-group">
+                    <label class="sim-label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        Tipo de espacio
+                    </label>
+                    <div class="sim-room-options" id="simRoomOptions">
+                        <button class="sim-option active" data-room="sala">Sala</button>
+                        <button class="sim-option" data-room="cocina">Cocina</button>
+                        <button class="sim-option" data-room="recamara">Recámara</button>
+                        <button class="sim-option" data-room="oficina">Oficina</button>
+                        <button class="sim-option" data-room="bano">Baño</button>
+                    </div>
+                </div>
+                <div class="sim-control-group">
+                    <label class="sim-label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                        Temperatura de color
+                    </label>
+                    <div class="sim-temp-options" id="simTempOptions">
+                        <button class="sim-temp active" data-temp="fria" data-color="#E8F0FF" data-kelvin="6500K">
+                            <span class="sim-temp-dot" style="background:#C8DEFF"></span>
+                            Fría / Blanca
+                            <small>6500K</small>
+                        </button>
+                        <button class="sim-temp" data-temp="neutra" data-color="#FFF5E6" data-kelvin="4000K">
+                            <span class="sim-temp-dot" style="background:#FFF0D4"></span>
+                            Neutra
+                            <small>4000K</small>
+                        </button>
+                        <button class="sim-temp" data-temp="calida" data-color="#FFE4B5" data-kelvin="2700K">
+                            <span class="sim-temp-dot" style="background:#FFD080"></span>
+                            Cálida / Amarilla
+                            <small>2700K</small>
+                        </button>
+                    </div>
+                </div>
+                <div class="sim-control-group">
+                    <label class="sim-label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        Intensidad: <span id="simIntensityVal">70</span>%
+                    </label>
+                    <input type="range" min="0" max="100" value="70" class="sim-slider" id="simIntensity">
+                    <div class="sim-slider-labels">
+                        <span>0%</span><span>50%</span><span>100%</span>
+                    </div>
+                </div>
+                <div class="sim-recommended">
+                    <h4>Productos recomendados</h4>
+                    <div class="sim-product" id="simProduct">
+                        <div class="sim-product-icon">💡</div>
+                        <div class="sim-product-info">
+                            <strong>Foco LED 12W Luz Fría</strong>
+                            <span>6500K · Ideal para sala</span>
+                            <span class="sim-product-price">$89.00 MXN</span>
+                        </div>
+                        <a href="#productos" class="btn btn-sm btn-primary">Ver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calculator-section" id="calculadora">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Asistente Inteligente</span>
+            <h2 class="section-title">Calculadora de Cable</h2>
+            <p class="section-desc">¿Qué cable necesitas para tu casa? Responde 5 preguntas simples y recibe una recomendación profesional.</p>
+        </div>
+        <div class="calc-wizard reveal">
+            <div class="calc-progress">
+                <div class="calc-progress-bar" id="calcProgressBar" style="width:20%"></div>
+                <div class="calc-steps">
+                    <span class="calc-step active" data-step="1">1</span>
+                    <span class="calc-step" data-step="2">2</span>
+                    <span class="calc-step" data-step="3">3</span>
+                    <span class="calc-step" data-step="4">4</span>
+                    <span class="calc-step" data-step="5">5</span>
+                    <span class="calc-step calc-step--result" data-step="6">✓</span>
+                </div>
+            </div>
+            <!-- Step 1 -->
+            <div class="calc-panel active" id="calcStep1">
+                <h3>¿Uso residencial o comercial?</h3>
+                <p>Selecciona el tipo de instalación eléctrica.</p>
+                <div class="calc-options-grid">
+                    <button class="calc-choice" data-value="residencial" onclick="calcSelect(this,1)">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <strong>Residencial</strong>
+                        <small>Casa o departamento</small>
+                    </button>
+                    <button class="calc-choice" data-value="comercial" onclick="calcSelect(this,1)">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        <strong>Comercial</strong>
+                        <small>Negocio u oficina</small>
+                    </button>
+                </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="calc-panel" id="calcStep2">
+                <h3>¿Qué aparatos conectarás?</h3>
+                <p>Selecciona todos los que apliquen.</p>
+                <div class="calc-checkboxes">
+                    <label class="calc-check"><input type="checkbox" value="iluminacion" checked><span class="calc-check-box"></span> Iluminación</label>
+                    <label class="calc-check"><input type="checkbox" value="contactos"><span class="calc-check-box"></span> Contactos generales</label>
+                    <label class="calc-check"><input type="checkbox" value="aire"><span class="calc-check-box"></span> Aire acondicionado</label>
+                    <label class="calc-check"><input type="checkbox" value="estufa"><span class="calc-check-box"></span> Estufa eléctrica</label>
+                    <label class="calc-check"><input type="checkbox" value="motor"><span class="calc-check-box"></span> Motor / bomba de agua</label>
+                    <label class="calc-check"><input type="checkbox" value="calentador"><span class="calc-check-box"></span> Calentador eléctrico</label>
+                </div>
+                <div class="calc-nav">
+                    <button class="btn btn-outline" onclick="calcBack(1)">← Anterior</button>
+                    <button class="btn btn-primary" onclick="calcNext(3)">Siguiente →</button>
+                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="calc-panel" id="calcStep3">
+                <h3>¿Distancia aproximada del circuito?</h3>
+                <p>Desde el tablero eléctrico hasta el punto más lejano.</p>
+                <div class="calc-distance">
+                    <input type="range" min="1" max="50" value="10" class="sim-slider" id="calcDistance" oninput="document.getElementById('calcDistVal').textContent=this.value">
+                    <div class="calc-distance-val"><span id="calcDistVal">10</span> metros</div>
+                </div>
+                <div class="calc-nav">
+                    <button class="btn btn-outline" onclick="calcBack(2)">← Anterior</button>
+                    <button class="btn btn-primary" onclick="calcNext(4)">Siguiente →</button>
+                </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="calc-panel" id="calcStep4">
+                <h3>¿Interior o intemperie?</h3>
+                <p>¿Dónde se instalará el cableado?</p>
+                <div class="calc-options-grid">
+                    <button class="calc-choice" data-value="interior" onclick="calcSelect(this,4)">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                        <strong>Interior</strong>
+                        <small>Dentro del inmueble</small>
+                    </button>
+                    <button class="calc-choice" data-value="intemperie" onclick="calcSelect(this,4)">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                        <strong>Intemperie</strong>
+                        <small>Expuesto al exterior</small>
+                    </button>
+                </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="calc-panel" id="calcStep5">
+                <h3>¿Tipo de instalación?</h3>
+                <p>¿Cómo se canalizará el cableado?</p>
+                <div class="calc-options-grid">
+                    <button class="calc-choice" data-value="tuberia" onclick="calcSelect(this,5)">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+                        <strong>En tubería</strong>
+                        <small>Conduit o canaleta</small>
+                    </button>
+                    <button class="calc-choice" data-value="aparente" onclick="calcSelect(this,5)">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        <strong>Aparente</strong>
+                        <small>Visible en superficie</small>
+                    </button>
+                </div>
+            </div>
+            <!-- Result -->
+            <div class="calc-panel" id="calcStep6">
+                <div class="calc-result">
+                    <div class="calc-result-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#28A745" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3>Recomendación</h3>
+                    <div class="calc-result-cable" id="calcResultCable">
+                        <span class="calc-result-type">Cable THW</span>
+                        <span class="calc-result-gauge">Calibre 12 AWG</span>
+                    </div>
+                    <div class="calc-result-details" id="calcResultDetails">
+                        <div class="calc-result-detail"><strong>Amperaje:</strong> 20A</div>
+                        <div class="calc-result-detail"><strong>Uso:</strong> Contactos generales</div>
+                        <div class="calc-result-detail"><strong>Tipo:</strong> Interior en tubería</div>
+                    </div>
+                    <div class="calc-result-actions">
+                        <a href="#productos" class="btn btn-primary">Ver producto en catálogo</a>
+                        <button class="btn btn-whatsapp" onclick="shareWhatsApp()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Compartir por WhatsApp
+                        </button>
+                        <button class="btn btn-outline" onclick="calcReset()">Calcular de nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="products-section" id="productos">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Catálogo</span>
+            <h2 class="section-title">Productos Destacados</h2>
+        </div>
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="product-badge">Iluminación</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="18" stroke="#CC0000" stroke-width="2"/><path d="M32 48h16M34 52h12M36 56h8" stroke="#CC0000" stroke-width="2" stroke-linecap="round"/><path d="M30 30c0-5.5 4.5-10 10-10" stroke="#FFC107" stroke-width="1.5"/></svg></div>
+                <h4>Foco LED 12W Luz Fría</h4>
+                <p>6500K · 1200 lúmenes · Base E27</p>
+                <div class="product-footer"><span class="product-price">$89.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-badge badge-cable">Cables</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><path d="M20 60 Q20 20 60 20" stroke="#CC0000" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M22 58 Q22 22 58 22" stroke="#FFC107" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="60" cy="20" r="4" fill="#CC0000"/><circle cx="20" cy="60" r="4" fill="#CC0000"/></svg></div>
+                <h4>Cable THW 12 AWG</h4>
+                <p>Cobre · 100m · Rojo · NOM</p>
+                <div class="product-footer"><span class="product-price">$1,250.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-badge">Iluminación</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><rect x="25" y="15" width="30" height="50" rx="3" stroke="#CC0000" stroke-width="2"/><rect x="30" y="22" width="20" height="8" rx="1" fill="#FFC107" opacity="0.3"/><circle cx="35" cy="40" r="3" fill="#CC0000"/><circle cx="45" cy="40" r="3" fill="#CC0000"/><circle cx="35" cy="50" r="3" fill="#CC0000"/><circle cx="45" cy="50" r="3" fill="#0066CC"/></svg></div>
+                <h4>Apagador Doble</h4>
+                <p>Línea Decor · Blanco · 15A</p>
+                <div class="product-footer"><span class="product-price">$145.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-badge badge-auto">Automatización</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><rect x="18" y="18" width="44" height="44" rx="8" stroke="#7C3AED" stroke-width="2"/><circle cx="40" cy="40" r="12" stroke="#7C3AED" stroke-width="1.5"/><path d="M40 28v24M28 40h24" stroke="#7C3AED" stroke-width="1" opacity="0.5"/><circle cx="40" cy="40" r="4" fill="#7C3AED"/></svg></div>
+                <h4>Dimmer Inteligente WiFi</h4>
+                <p>Compatible Alexa · 200W LED</p>
+                <div class="product-footer"><span class="product-price">$489.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-badge badge-cable">Cables</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><path d="M15 40h50" stroke="#CC0000" stroke-width="6" stroke-linecap="round"/><path d="M15 40h50" stroke="#FFC107" stroke-width="2" stroke-linecap="round"/><path d="M15 50h50" stroke="#0066CC" stroke-width="6" stroke-linecap="round"/><path d="M15 50h50" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M15 30h50" stroke="#28A745" stroke-width="6" stroke-linecap="round"/><path d="M15 30h50" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <h4>Cable THW 10 AWG</h4>
+                <p>Cobre · 100m · Negro · NOM</p>
+                <div class="product-footer"><span class="product-price">$1,890.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-badge">Iluminación</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="40" rx="28" ry="6" stroke="#CC0000" stroke-width="2"/><path d="M12 40v-5a28 5 0 0 1 56 0v5" stroke="#CC0000" stroke-width="2"/><line x1="40" y1="15" x2="40" y2="34" stroke="#888" stroke-width="1.5"/><circle cx="40" cy="36" r="3" fill="#FFC107"/></svg></div>
+                <h4>Lámpara Colgante LED</h4>
+                <p>Moderna · 18W · Luz cálida</p>
+                <div class="product-footer"><span class="product-price">$750.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-badge badge-seg">Seguridad</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><rect x="20" y="25" width="40" height="35" rx="4" stroke="#CC0000" stroke-width="2"/><path d="M28 25v-5a12 12 0 0 1 24 0v5" stroke="#CC0000" stroke-width="2" fill="none"/><circle cx="40" cy="42" r="5" fill="#CC0000"/><line x1="40" y1="47" x2="40" y2="53" stroke="#CC0000" stroke-width="2"/></svg></div>
+                <h4>Centro de Carga 8 Circuitos</h4>
+                <p>QO · Empotrar · Con puerta</p>
+                <div class="product-footer"><span class="product-price">$1,350.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-badge badge-auto">Automatización</div>
+                <div class="product-img"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="22" stroke="#7C3AED" stroke-width="2"/><path d="M40 18v8M40 54v8M18 40h8M54 40h8" stroke="#7C3AED" stroke-width="1.5"/><circle cx="40" cy="40" r="10" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="3 3"/><path d="M36 40l3 3 5-6" stroke="#28A745" stroke-width="2"/></svg></div>
+                <h4>Contacto Inteligente WiFi</h4>
+                <p>Programable · Medidor energía</p>
+                <div class="product-footer"><span class="product-price">$320.00</span><button class="btn btn-sm btn-primary">Cotizar</button></div>
+            </div>
+        </div>
+        <div class="products-cta"><a href="#" class="btn btn-outline btn-lg">Ver todo el catálogo →</a></div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section" id="blog">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Blog con IA</span>
+            <h2 class="section-title">Últimos Artículos</h2>
+        </div>
+        <div class="blog-grid">
+            <article class="blog-card reveal">
+                <div class="blog-img" style="background: linear-gradient(135deg, #CC0000 0%, #FF6B35 100%)">
+                    <span class="blog-ai-badge">✨ Generado con IA</span>
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta"><span>12 Feb 2026</span><span>·</span><span>5 min lectura</span></div>
+                    <h3>Cómo instalar un apagador de 3 vías</h3>
+                    <p>Guía paso a paso para instalar un apagador de escalera. Aprende qué cables necesitas y cómo conectar correctamente.</p>
+                    <a href="#" class="blog-link">Leer artículo →</a>
+                </div>
+            </article>
+            <article class="blog-card reveal">
+                <div class="blog-img" style="background: linear-gradient(135deg, #0066CC 0%, #7C3AED 100%)">
+                    <span class="blog-ai-badge">✨ Generado con IA</span>
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta"><span>8 Feb 2026</span><span>·</span><span>7 min lectura</span></div>
+                    <h3>Iluminación LED inteligente 2026</h3>
+                    <p>Las últimas tendencias en iluminación conectada: WiFi, Zigbee, escenas programables y ahorro de energía.</p>
+                    <a href="#" class="blog-link">Leer artículo →</a>
+                </div>
+            </article>
+            <article class="blog-card reveal">
+                <div class="blog-img" style="background: linear-gradient(135deg, #28A745 0%, #0066CC 100%)">
+                    <span class="blog-ai-badge">✨ Generado con IA</span>
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta"><span>3 Feb 2026</span><span>·</span><span>4 min lectura</span></div>
+                    <h3>5 señales de que tu instalación necesita revisión</h3>
+                    <p>Chispas, calentamiento y bajones de luz pueden indicar problemas graves. Conoce las señales de alerta.</p>
+                    <a href="#" class="blog-link">Leer artículo →</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- CONFIANZA -->
+<section class="trust-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Respaldo</span>
+            <h2 class="section-title">¿Por qué elegirnos?</h2>
+        </div>
+        <div class="trust-stats">
+            <div class="trust-stat reveal">
+                <span class="trust-num">15+</span>
+                <span class="trust-label">Años de experiencia</span>
+            </div>
+            <div class="trust-stat reveal">
+                <span class="trust-num">5,000+</span>
+                <span class="trust-label">Clientes satisfechos</span>
+            </div>
+            <div class="trust-stat reveal">
+                <span class="trust-num">2,000+</span>
+                <span class="trust-label">Productos en catálogo</span>
+            </div>
+            <div class="trust-stat reveal">
+                <span class="trust-num">24h</span>
+                <span class="trust-label">Tiempo de respuesta</span>
+            </div>
+        </div>
+        <div class="trust-brands reveal">
+            <p>Marcas que distribuimos:</p>
+            <div class="trust-brand-logos">
+                <span>CONDUMEX</span><span>IUSA</span><span>SCHNEIDER</span><span>PHILIPS</span><span>SYLVANIA</span><span>SQUARE D</span><span>BTICINO</span><span>VOLTECH</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact-section" id="contacto">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Hablemos</span>
+            <h2 class="section-title">Contacto</h2>
+        </div>
+        <div class="contact-grid">
+            <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('¡Mensaje enviado! (Demo)')">
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" placeholder="(xxx) xxx-xxxx">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea rows="4" placeholder="Describe tu proyecto o consulta..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-full">Enviar mensaje</button>
+            </form>
+            <div class="contact-info reveal">
+                <div class="contact-map">
+                    <div class="contact-map-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>San Miguel de Allende, Gto.</span>
+                    </div>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div><strong>Dirección</strong><br>Calle Insurgentes #45, Centro, San Miguel de Allende, Gto.</div>
+                    </div>
+                    <div class="contact-detail">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <div><strong>Teléfono</strong><br>(415) 123-4567</div>
+                    </div>
+                    <div class="contact-detail">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <div><strong>Horario</strong><br>Lun - Vie: 9:00 - 19:00<br>Sáb: 9:00 - 14:00</div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-whatsapp btn-lg btn-full">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Escribir por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2L6 18h8l-2 12 12-16h-8l2-12z" fill="#CC0000"/></svg>
+                    <span>Eléctrica <strong>San Miguel</strong></span>
+                </div>
+                <p>Tu experto en soluciones eléctricas desde 2011. Iluminación, cables, automatización y más.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <a href="#inicio">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="#simulador">Simulador</a>
+                <a href="#calculadora">Calculadora</a>
+                <a href="#blog">Blog</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="footer-links">
+                <h4>Categorías</h4>
+                <a href="#">Iluminación LED</a>
+                <a href="#">Cables y Conductores</a>
+                <a href="#">Automatización</a>
+                <a href="#">Centros de Carga</a>
+                <a href="#">Herramientas</a>
+            </div>
+            <div class="footer-links">
+                <h4>Síguenos</h4>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Eléctrica San Miguel. Todos los derechos reservados.</p>
+            <p class="footer-demo">Demo generado con Next.js · PostgreSQL · Tailwind CSS · Vercel</p>
+        </div>
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="#" class="whatsapp-float" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="app.js"></script>
+</body>
+</html>
