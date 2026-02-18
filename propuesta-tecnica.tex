@@ -1,0 +1,1283 @@
+\documentclass[12pt,a4paper]{article}
+
+% ============================================================
+% PAQUETES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{calc}
+\usepackage{eso-pic}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{fix-cm}
+
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc, shadows, fit, backgrounds, decorations.markings}
+\pgfplotsset{compat=1.18}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm, headheight=25pt}
+\addtolength{\topmargin}{-13pt}
+
+% ============================================================
+% COLORES CORPORATIVOS
+% ============================================================
+\definecolor{rojo}{HTML}{CC0000}
+\definecolor{rojoclaro}{HTML}{FF3333}
+\definecolor{grisoscuro}{HTML}{2B2B2B}
+\definecolor{gristexto}{HTML}{5D6576}
+\definecolor{fondoclaro}{HTML}{F3F7F9}
+\definecolor{azulelectrico}{HTML}{0066CC}
+\definecolor{verdeok}{HTML}{28A745}
+\definecolor{amarillo}{HTML}{FFC107}
+\definecolor{naranja}{HTML}{FF6B35}
+\definecolor{morado}{HTML}{7C3AED}
+\definecolor{cyan}{HTML}{06B6D4}
+
+% ============================================================
+% ESTILOS
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=rojo,
+    urlcolor=azulelectrico,
+    citecolor=grisoscuro
+}
+
+\titleformat{\section}
+    {\Large\bfseries\color{rojo}}
+    {\thesection.}{0.5em}{}
+    [\vspace{-0.5em}\textcolor{rojo}{\rule{\textwidth}{1.5pt}}]
+
+\titleformat{\subsection}
+    {\large\bfseries\color{grisoscuro}}
+    {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\color{gristexto}}
+    {\thesubsubsection}{0.5em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{gristexto}{Propuesta T\'ecnica --- El\'ectrica San Miguel}}
+\fancyhead[R]{\small\textcolor{gristexto}{Febrero 2026}}
+\fancyfoot[C]{\textcolor{rojo}{\thepage}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rojo}\leaders\hrule height \headrulewidth\hfill}}
+
+% ============================================================
+% CAJAS PERSONALIZADAS
+% ============================================================
+\newtcolorbox{cajainfo}[1][]{
+    colback=fondoclaro,
+    colframe=azulelectrico,
+    fonttitle=\bfseries,
+    title=#1,
+    rounded corners,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajadestacado}[1][]{
+    colback=rojo!5,
+    colframe=rojo,
+    fonttitle=\bfseries\color{white},
+    colbacktitle=rojo,
+    title=#1,
+    rounded corners,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt
+}
+
+\newtcolorbox{cajaprecio}{
+    colback=verdeok!5,
+    colframe=verdeok,
+    rounded corners,
+    boxrule=1.5pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt
+}
+
+\newtcolorbox{cajatech}[1][]{
+    colback=morado!3,
+    colframe=morado,
+    fonttitle=\bfseries\color{white},
+    colbacktitle=morado,
+    title=#1,
+    rounded corners,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+    % Fondo
+    \fill[grisoscuro] (current page.south west) rectangle (current page.north east);
+
+    % Franja roja diagonal
+    \fill[rojo] ([yshift=-4cm]current page.north west) --
+                 ([yshift=-2cm]current page.north east) --
+                 ([yshift=-8cm]current page.north east) --
+                 ([yshift=-10cm]current page.north west) -- cycle;
+
+    % Franja roja inferior
+    \fill[rojo] ([yshift=3cm]current page.south west) rectangle ([yshift=0cm]current page.south east);
+
+    % Circuito decorativo (más abajo para no interferir)
+    \foreach \i in {1,...,8} {
+        \draw[white!10, line width=0.5pt]
+            ([xshift=\i*2.5cm, yshift=-14cm]current page.north west) -- ++(0,-3cm) -- ++(1.5cm,0);
+    }
+
+    % Titulo principal
+    \node[white, font=\fontsize{38}{42}\bfseries\selectfont, anchor=center, text width=16cm, align=center]
+        at ([yshift=2cm]current page.center)
+        {PROPUESTA T\'ECNICA};
+
+    \node[white, font=\fontsize{22}{26}\selectfont, anchor=center, text width=16cm, align=center]
+        at ([yshift=-0.5cm]current page.center)
+        {Redise\~no Integral del Sitio Web};
+
+    \node[white!80, font=\fontsize{18}{22}\selectfont, anchor=center]
+        at ([yshift=-2.5cm]current page.center)
+        {\textbf{electrica-sanmiguel.com}};
+
+    % Linea separadora
+    \draw[amarillo, line width=2pt]
+        ([xshift=-4cm, yshift=-3.8cm]current page.center) --
+        ([xshift=4cm, yshift=-3.8cm]current page.center);
+
+    % Stack badge
+    \node[white!70, font=\small, anchor=center]
+        at ([yshift=-4.8cm]current page.center)
+        {Next.js \quad\textbullet\quad PostgreSQL \quad\textbullet\quad Tailwind CSS \quad\textbullet\quad Vercel};
+
+    % Info inferior
+    \node[white, font=\large, anchor=center]
+        at ([yshift=-6.5cm]current page.center)
+        {El\'ectrica San Miguel};
+
+    % Fecha
+    \node[white, font=\large, anchor=center]
+        at ([yshift=1.2cm]current page.south)
+        {Febrero 2026 \quad|\quad V2.0};
+
+    % Texto barra inferior
+    \node[white, font=\small, anchor=center]
+        at ([yshift=0.3cm, xshift=-4cm]current page.south)
+        {\faIcon{envelope} contacto};
+    \node[white, font=\small, anchor=center]
+        at ([yshift=0.3cm, xshift=4cm]current page.south)
+        {\faIcon{globe} electrica-sanmiguel.com};
+
+\end{tikzpicture}
+\end{titlepage}
+
+% ============================================================
+% TABLA DE CONTENIDOS
+% ============================================================
+\tableofcontents
+\newpage
+
+% ============================================================
+% 1. RESUMEN EJECUTIVO
+% ============================================================
+\section{Resumen Ejecutivo}
+
+\begin{cajadestacado}[Objetivo del Proyecto]
+Redise\~nar completamente el sitio web \textbf{electrica-sanmiguel.com}, migrando de una arquitectura WordPress monolítica a una \textbf{plataforma moderna con Next.js, base de datos PostgreSQL y despliegue en Vercel}. El nuevo sitio incorporará herramientas interactivas innovadoras: un simulador de iluminación en tiempo real, un asistente inteligente de cableado y un sistema de blog automatizado con inteligencia artificial.
+\end{cajadestacado}
+
+\subsection{Situación Actual}
+
+El sitio actual presenta las siguientes limitaciones:
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Plataforma:} WordPress 6.7.4 con WooCommerce --- arquitectura monolítica y pesada
+    \item \textbf{Diseño:} Tema genérico con personalizaciones CSS limitadas
+    \item \textbf{Rendimiento:} Carga lenta por exceso de plugins (+15 activos) y PHP server-rendered
+    \item \textbf{Base de datos:} MySQL sin optimizar, acoplada a WordPress
+    \item \textbf{Hosting:} Compartido, sin CDN ni edge computing
+    \item \textbf{SEO:} Google Analytics legacy (UA), sin datos estructurados completos
+    \item \textbf{Interactividad:} Nula --- solo catálogo estático y formulario Contact Form 7
+\end{itemize}
+
+\subsection{Visión del Nuevo Sitio}
+
+\begin{cajainfo}[Pilares del Redise\~no]
+\begin{enumerate}[itemsep=4pt]
+    \item \textbf{Stack moderno:} Next.js 15 + React 19 + TypeScript + Tailwind CSS
+    \item \textbf{Base de datos propia:} PostgreSQL con Prisma ORM --- control total de los datos
+    \item \textbf{Rendimiento extremo:} SSR/SSG, edge caching, imágenes optimizadas automáticamente
+    \item \textbf{Interactividad:} Simulador de iluminación, calculadora de cables, blog con IA
+    \item \textbf{Panel de administración:} Dashboard personalizado para gestionar productos, blog y configuraciones
+    \item \textbf{Escalabilidad:} Arquitectura desacoplada lista para crecer sin límites
+\end{enumerate}
+\end{cajainfo}
+
+\newpage
+
+% ============================================================
+% 2. ANÁLISIS DEL SITIO ACTUAL
+% ============================================================
+\section{Análisis del Sitio Actual}
+
+\subsection{Diagrama de Arquitectura Actual}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm and 2cm,
+    box/.style={rectangle, draw=gristexto, fill=fondoclaro, rounded corners=5pt,
+                minimum width=3cm, minimum height=1cm, font=\small, align=center,
+                drop shadow={shadow xshift=1pt, shadow yshift=-1pt, opacity=0.3}},
+    server/.style={rectangle, draw=rojo, fill=rojo!10, rounded corners=5pt,
+                   minimum width=3.5cm, minimum height=1.2cm, font=\small\bfseries, align=center,
+                   drop shadow={shadow xshift=1pt, shadow yshift=-1pt, opacity=0.3}},
+    arrow/.style={-{Stealth[length=6pt]}, thick, gristexto},
+    lbl/.style={font=\scriptsize\color{gristexto}, midway}
+]
+
+\node[server] (wp) {WordPress 6.7.4\\Hosting compartido};
+\node[box, above left=1.5cm and 1cm of wp] (tema) {Tema genérico\\personalizado};
+\node[box, above right=1.5cm and 1cm of wp] (woo) {WooCommerce\\Catálogo};
+\node[box, below left=1.5cm and 1cm of wp] (cf7) {Contact\\Form 7};
+\node[box, below right=1.5cm and 1cm of wp] (ga) {Google Analytics\\(UA legacy)};
+\node[box, above=2.5cm of wp] (plugins) {+15 Plugins\\activos};
+\draw[arrow] (wp) -- (tema);
+\draw[arrow] (wp) -- (woo);
+\draw[arrow] (wp) -- (cf7);
+\draw[arrow] (wp) -- (ga);
+\draw[arrow] (wp) -- (plugins);
+\node[box, fill=rojo!8, draw=rojo!50, right=3.5cm of wp] (mysql) {\faIcon{database} MySQL\\acoplado a WP};
+\draw[arrow, rojo!50] (wp) -- (mysql);
+\node[box, fill=amarillo!20, draw=amarillo!80!black, left=4cm of wp] (user) {\faIcon{user} Usuario\\visitante};
+\draw[arrow, amarillo!80!black] (user) -- (wp) node[lbl, above] {HTTP};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Problemas Identificados}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\bfseries\color{rojo}}l X >{\centering\arraybackslash}p{2cm}}
+    \toprule
+    \textbf{\color{grisoscuro}Área} & \textbf{\color{grisoscuro}Problema} & \textbf{\color{grisoscuro}Impacto} \\
+    \midrule
+    Arquitectura & WordPress monolítico con PHP --- lento, difícil de escalar & Crítico \\
+    \addlinespace
+    Rendimiento & +15 plugins, sin CDN, server-rendered en cada request & Crítico \\
+    \addlinespace
+    Base de datos & MySQL acoplado a WP, sin modelo de datos propio & Alto \\
+    \addlinespace
+    Diseño & Aspecto genérico, no refleja identidad de marca & Alto \\
+    \addlinespace
+    SEO & Analytics legacy (UA), sin Schema.org completo, sin SSR & Alto \\
+    \addlinespace
+    Seguridad & WordPress es el CMS más atacado del mundo (43\% del web) & Medio \\
+    \addlinespace
+    Interactividad & Nula --- solo catálogo estático y formulario de contacto & Alto \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 3. NUEVA ARQUITECTURA
+% ============================================================
+\section{Nueva Arquitectura del Sistema}
+
+\subsection{Diagrama de Arquitectura Propuesta}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.2cm and 1.5cm,
+    modulo/.style={rectangle, draw=#1, fill=#1!8, rounded corners=8pt,
+                   minimum width=3cm, minimum height=1.2cm, font=\small, align=center,
+                   line width=1pt,
+                   drop shadow={shadow xshift=1.5pt, shadow yshift=-1.5pt, opacity=0.2}},
+    core/.style={rectangle, draw=rojo, fill=rojo!12, rounded corners=8pt,
+                 minimum width=4.5cm, minimum height=1.5cm, font=\small\bfseries, align=center,
+                 line width=1.5pt,
+                 drop shadow={shadow xshift=2pt, shadow yshift=-2pt, opacity=0.3}},
+    db/.style={cylinder, draw=morado, fill=morado!10, shape border rotate=90,
+               aspect=0.25, minimum width=2.5cm, minimum height=1.2cm,
+               font=\small, align=center, line width=1pt},
+    extapi/.style={rectangle, draw=naranja, fill=naranja!10, rounded corners=5pt,
+                minimum width=2.6cm, minimum height=0.9cm, font=\scriptsize, align=center,
+                line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, gristexto!70},
+    darrow/.style={{Stealth[length=5pt]}-{Stealth[length=5pt]}, thick, gristexto!70}
+]
+
+% Core
+\node[core] (core) {Next.js 15\\App Router + API Routes};
+
+% Frontend modules (arriba)
+\node[modulo=azulelectrico, above left=1.5cm and 0.3cm of core] (sim) {\faIcon{lightbulb} Simulador\\Iluminación};
+\node[modulo=verdeok, above=1.5cm of core] (calc) {\faIcon{calculator} Calculadora\\Cableado};
+\node[modulo=cyan, above right=1.5cm and 0.3cm of core] (blog) {\faIcon{robot} Blog\\con IA};
+
+% Backend modules (abajo)
+\node[modulo=rojo, below left=1.5cm and 0.3cm of core] (cat) {\faIcon{box-open} Catálogo\\Productos};
+\node[modulo=gristexto, below=1.5cm of core] (admin) {\faIcon{cogs} Panel\\Admin};
+\node[modulo=amarillo!80!black, below right=1.5cm and 0.3cm of core] (crm) {\faIcon{headset} WhatsApp\\Contacto};
+
+% Base de datos
+\node[db, left=3.5cm of core] (pg) {\faIcon{database}\\PostgreSQL};
+
+% APIs externas
+\node[extapi, right=3cm of core] (openai) {API OpenAI\\Claude / GPT};
+\node[extapi, below=0.5cm of openai] (vercel) {Vercel\\Edge Network};
+\node[extapi, above=0.5cm of openai] (cloudinary) {Cloudinary\\Imágenes};
+
+% Flechas internas
+\draw[arrow] (core) -- (sim);
+\draw[arrow] (core) -- (calc);
+\draw[arrow] (core) -- (blog);
+\draw[arrow] (core) -- (cat);
+\draw[arrow] (core) -- (admin);
+\draw[arrow] (core) -- (crm);
+
+% DB
+\draw[darrow] (core) -- (pg) node[midway, above, font=\scriptsize\color{morado}] {Prisma ORM};
+
+% APIs
+\draw[darrow] (core) -- (openai);
+\draw[darrow] (core.east) ++(0,-0.3) -| (vercel);
+\draw[darrow] (core.east) ++(0,0.3) -| (cloudinary);
+
+% Usuario
+\node[modulo=amarillo!80!black, above=3.5cm of core, minimum width=5cm] (user) {\faIcon{users} Usuarios / Clientes};
+\draw[darrow, amarillo!80!black] (user) -- (calc);
+\draw[arrow, amarillo!80!black, bend right=25] (user.west) to (sim.north);
+\draw[arrow, amarillo!80!black, bend left=25] (user.east) to (blog.north);
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Ventajas de la Nueva Arquitectura vs WordPress}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.5cm} X X}
+    \toprule
+    \textbf{Aspecto} & \textbf{WordPress (actual)} & \textbf{Next.js (propuesto)} \\
+    \midrule
+    Rendimiento & Cada página se renderiza en PHP en el servidor & SSR/SSG con cache en edge --- carga $<$ 1 segundo \\
+    \addlinespace
+    Base de datos & MySQL acoplado, esquema rígido de WP & PostgreSQL con Prisma --- modelo propio y flexible \\
+    \addlinespace
+    Frontend & jQuery + tema genérico & React 19 + Tailwind CSS --- componentes modernos \\
+    \addlinespace
+    Seguridad & CMS más atacado, requiere actualizaciones constantes & Superficie de ataque mínima, auth con NextAuth \\
+    \addlinespace
+    SEO & Depende de plugins (Yoast) & SSR nativo, metadata API, sitemap automático \\
+    \addlinespace
+    Hosting & Servidor PHP, costos variables & Vercel: serverless, auto-scaling, gratis para iniciar \\
+    \addlinespace
+    Deploy & FTP manual o plugins & Git push $\rightarrow$ deploy automático en segundos \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 4. MODELO DE DATOS
+% ============================================================
+\section{Modelo de Base de Datos}
+
+\subsection{Diagrama Entidad-Relación (PostgreSQL + Prisma)}
+
+\begin{center}
+\begin{tikzpicture}[
+    entity/.style={rectangle, draw=#1, fill=white, rounded corners=4pt,
+                   minimum width=4cm, font=\small, align=left,
+                   line width=1pt, inner sep=0pt},
+    header/.style={fill=#1, text=white, font=\small\bfseries, minimum width=4cm,
+                   minimum height=0.6cm, rounded corners=3pt, inner sep=4pt, align=center},
+    fieldbox/.style={inner sep=6pt, font=\small, align=left},
+    rel/.style={-{Stealth[length=5pt]}, thick, #1},
+    rellbl/.style={font=\scriptsize\color{gristexto}, midway, fill=white, inner sep=1pt}
+]
+
+% Producto
+\node[entity=rojo] (prod) at (0,0) {
+    \begin{minipage}{3.8cm}
+    \begin{tikzpicture}
+        \node[header=rojo, anchor=north west] at (0,0) {Producto};
+    \end{tikzpicture}\\[-2pt]
+    \begin{tabular}{l}
+    \texttt{id} \scriptsize UUID PK \\
+    \texttt{nombre} \scriptsize String \\
+    \texttt{descripcion} \scriptsize Text \\
+    \texttt{precio} \scriptsize Decimal \\
+    \texttt{sku} \scriptsize String \\
+    \texttt{imagenes} \scriptsize String[] \\
+    \texttt{categoriaId} \scriptsize FK \\
+    \texttt{stock} \scriptsize Int \\
+    \texttt{activo} \scriptsize Boolean
+    \end{tabular}
+    \end{minipage}
+};
+
+% Categoría
+\node[entity=azulelectrico, right=2cm of prod] (categ) {
+    \begin{minipage}{3.8cm}
+    \begin{tikzpicture}
+        \node[header=azulelectrico, anchor=north west] at (0,0) {Categoría};
+    \end{tikzpicture}\\[-2pt]
+    \begin{tabular}{l}
+    \texttt{id} \scriptsize UUID PK \\
+    \texttt{nombre} \scriptsize String \\
+    \texttt{slug} \scriptsize String \\
+    \texttt{descripcion} \scriptsize Text \\
+    \texttt{imagen} \scriptsize String \\
+    \texttt{orden} \scriptsize Int
+    \end{tabular}
+    \end{minipage}
+};
+
+% Blog Post
+\node[entity=verdeok, below=1.2cm of prod] (blogent) {
+    \begin{minipage}{3.8cm}
+    \begin{tikzpicture}
+        \node[header=verdeok, anchor=north west] at (0,0) {BlogPost};
+    \end{tikzpicture}\\[-2pt]
+    \begin{tabular}{l}
+    \texttt{id} \scriptsize UUID PK \\
+    \texttt{titulo} \scriptsize String \\
+    \texttt{slug} \scriptsize String \\
+    \texttt{contenido} \scriptsize Text \\
+    \texttt{extracto} \scriptsize String \\
+    \texttt{estado} \scriptsize Enum \\
+    \texttt{seoTitle} \scriptsize String \\
+    \texttt{generadoIA} \scriptsize Boolean \\
+    \texttt{publicadoEn} \scriptsize DateTime
+    \end{tabular}
+    \end{minipage}
+};
+
+% Contacto / Lead
+\node[entity=naranja, below=1.2cm of categ] (lead) {
+    \begin{minipage}{3.8cm}
+    \begin{tikzpicture}
+        \node[header=naranja, anchor=north west] at (0,0) {Lead / Contacto};
+    \end{tikzpicture}\\[-2pt]
+    \begin{tabular}{l}
+    \texttt{id} \scriptsize UUID PK \\
+    \texttt{nombre} \scriptsize String \\
+    \texttt{email} \scriptsize String \\
+    \texttt{telefono} \scriptsize String \\
+    \texttt{mensaje} \scriptsize Text \\
+    \texttt{origen} \scriptsize Enum \\
+    \texttt{productoId} \scriptsize FK? \\
+    \texttt{createdAt} \scriptsize DateTime
+    \end{tabular}
+    \end{minipage}
+};
+
+% Relaciones
+\draw[rel=azulelectrico] (prod.east) -- (categ.west) node[rellbl, above] {N:1};
+\draw[rel=naranja, dashed] (lead.west) -- (blogent.east) node[rellbl, above] {N:1?};
+\draw[rel=rojo, dashed] (lead.north west) -- (prod.south east) node[rellbl, right] {N:1?};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Justificación de PostgreSQL}
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Modelo propio:} A diferencia de WordPress donde todo pasa por \texttt{wp\_posts} y \texttt{wp\_postmeta}, aquí cada entidad tiene su tabla optimizada con tipos nativos
+    \item \textbf{Prisma ORM:} Migraciones automáticas, type-safety completo con TypeScript, queries optimizadas
+    \item \textbf{JSON nativo:} PostgreSQL maneja campos JSONB para datos flexibles (especificaciones de productos, metadatos SEO)
+    \item \textbf{Full-text search:} Búsqueda de productos sin necesidad de servicios externos como Elasticsearch
+    \item \textbf{Hosting:} Supabase (tier gratuito) o Neon (serverless PostgreSQL) --- sin costo adicional para iniciar
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% 5. FUNCIONALIDADES INTERACTIVAS
+% ============================================================
+\section{Funcionalidades Interactivas}
+
+\subsection{Simulador de Iluminación de Espacios}
+
+\begin{cajadestacado}[Herramienta estrella: ``¿Cómo se vería mi sala?'']
+El usuario podrá visualizar en tiempo real cómo lucen diferentes tipos de iluminación (blanca/fría, cálida y amarilla) aplicados a distintos espacios. Desarrollado como componente React con Three.js/Canvas, aprovechando el renderizado del lado del cliente de Next.js para una experiencia fluida.
+\end{cajadestacado}
+
+\subsubsection{Flujo de Usuario del Simulador}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.8cm,
+    paso/.style={rectangle, draw=azulelectrico, fill=azulelectrico!8, rounded corners=6pt,
+                 minimum width=4cm, minimum height=1.1cm, font=\small, align=center,
+                 line width=1pt},
+    decision/.style={diamond, draw=rojo, fill=rojo!8, aspect=2.5,
+                     font=\small, align=center, inner sep=2pt, line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, gristexto!70},
+    note/.style={rectangle, draw=verdeok!60, fill=verdeok!5, rounded corners=3pt,
+                 font=\scriptsize, align=center, dashed}
+]
+
+\node[paso] (s1) {1. Seleccionar tipo\\de espacio};
+\node[paso, below=of s1] (s2) {2. Elegir temperatura\\de color};
+\node[paso, below=of s2] (s3) {3. Ajustar intensidad\\con slider};
+\node[paso, below=of s3] (s4) {4. Ver resultado\\en tiempo real};
+\node[decision, below=1cm of s4] (d1) {¿Le gusta?};
+\node[paso, below left=1cm and 1.5cm of d1] (s5a) {Cambiar\\opciones};
+\node[paso, below right=1cm and 1.5cm of d1] (s5b) {Ver productos\\recomendados};
+\node[paso, below=1cm of s5b] (s6) {Agregar al carrito\\o solicitar cotización};
+
+\node[note, right=2cm of s1] (n1) {Sala, cocina, recámara,\\oficina, baño};
+\node[note, right=2cm of s2] (n2) {Luz fría (6500K)\\Neutra (4000K)\\Cálida (2700K)};
+\node[note, right=2cm of s3] (n3) {Control deslizante\\0\% -- 100\%};
+
+\draw[arrow] (s1) -- (s2);
+\draw[arrow] (s2) -- (s3);
+\draw[arrow] (s3) -- (s4);
+\draw[arrow] (s4) -- (d1);
+\draw[arrow] (d1) -| node[above left, font=\scriptsize] {No} (s5a);
+\draw[arrow] (d1) -| node[above right, font=\scriptsize] {Sí} (s5b);
+\draw[arrow] (s5a) |- (s2);
+\draw[arrow] (s5b) -- (s6);
+
+\draw[gristexto!30, dashed] (s1) -- (n1);
+\draw[gristexto!30, dashed] (s2) -- (n2);
+\draw[gristexto!30, dashed] (s3) -- (n3);
+
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Implementación Técnica del Simulador}
+
+\begin{cajatech}[Stack del Simulador]
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+    \item \textbf{Componente:} React Client Component (\texttt{'use client'}) dentro de Next.js
+    \item \textbf{Motor visual:} Canvas HTML5 + WebGL shaders para efectos de iluminación realistas
+    \item \textbf{Librería:} \texttt{react-three-fiber} (Three.js para React) para escenas 3D ligeras
+    \item \textbf{Imágenes:} 5 escenas HDR pre-renderizadas, servidas desde Cloudinary con optimización automática
+    \item \textbf{Temperaturas de color:} Fría/blanca 6500K, Neutra 4000K, Cálida/amarilla 2700K
+    \item \textbf{State management:} Zustand para estado reactivo del simulador
+    \item \textbf{Vinculación:} API Route \texttt{/api/productos} filtra productos según resultado
+\end{itemize}
+\end{cajatech}
+
+\subsection{Calculadora de Tipo de Cable}
+
+\begin{cajadestacado}[Asistente: ``¿Qué cable necesito para mi casa?'']
+Herramienta interactiva tipo wizard donde el usuario responde preguntas simples sobre su instalación eléctrica y obtiene una recomendación profesional del tipo y calibre de cable adecuado, consultando directamente la base de datos de productos.
+\end{cajadestacado}
+
+\subsubsection{Flujo del Asistente de Cableado}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.6cm and 2cm,
+    question/.style={rectangle, draw=verdeok, fill=verdeok!8, rounded corners=6pt,
+                     minimum width=5cm, minimum height=0.9cm, font=\small, align=center, line width=1pt},
+    result/.style={rectangle, draw=rojo, fill=rojo!8, rounded corners=6pt,
+                   minimum width=5cm, minimum height=1.2cm, font=\small\bfseries, align=center, line width=1.5pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, verdeok!70}
+]
+
+\node[question] (q1) {\faIcon{question-circle} ¿Uso residencial o comercial?};
+\node[question, below=of q1] (q2) {\faIcon{question-circle} ¿Qué aparatos conectarás?};
+\node[question, below=of q2] (q3) {\faIcon{question-circle} ¿Distancia aproximada del circuito?};
+\node[question, below=of q3] (q4) {\faIcon{question-circle} ¿Interior o intemperie?};
+\node[question, below=of q4] (q5) {\faIcon{question-circle} ¿Instalación en tubería o aparente?};
+
+\node[result, below=1cm of q5] (res) {\faIcon{check-circle} Recomendación:\\Cable THW calibre 12 AWG\\+ enlace directo al producto};
+
+\draw[arrow] (q1) -- (q2);
+\draw[arrow] (q2) -- (q3);
+\draw[arrow] (q3) -- (q4);
+\draw[arrow] (q4) -- (q5);
+\draw[arrow] (q5) -- (res);
+
+\node[rectangle, draw=gristexto!30, fill=fondoclaro, rounded corners=3pt,
+      font=\scriptsize, align=left, right=2.5cm of q2, text width=4cm] (opts) {
+    \textbf{Aparatos comunes:}\\
+    \faIcon{check} Iluminación\\
+    \faIcon{check} Contactos generales\\
+    \faIcon{check} Aire acondicionado\\
+    \faIcon{check} Estufa eléctrica\\
+    \faIcon{check} Motor/bomba de agua\\
+    \faIcon{check} Calentador eléctrico
+};
+\draw[gristexto!30, dashed] (q2) -- (opts);
+
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Implementación Técnica}
+
+\begin{cajatech}[Stack de la Calculadora]
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+    \item \textbf{UI:} Componente multi-step con \texttt{react-hook-form} + animaciones Framer Motion
+    \item \textbf{Lógica:} Server Action de Next.js que consulta tabla de normatividad en PostgreSQL
+    \item \textbf{Normatividad:} Tabla \texttt{norma\_cableado} con reglas de la \textbf{NOM-001-SEDE} vigente
+    \item \textbf{Resultado:} Query a tabla \texttt{Producto} con filtros de categoría y calibre
+    \item \textbf{Lead capture:} Opción de enviar resultado por WhatsApp/email (genera registro en tabla \texttt{Lead})
+\end{itemize}
+\end{cajatech}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tabularx}{\textwidth}{l l l X}
+    \toprule
+    \textbf{Uso} & \textbf{Calibre} & \textbf{Amperaje} & \textbf{Aplicación típica} \\
+    \midrule
+    Iluminación & 14 AWG & 15A & Circuitos de lámparas y focos \\
+    Contactos generales & 12 AWG & 20A & Enchufes para electrodomésticos \\
+    Aire acondicionado & 10 AWG & 30A & Equipos de clima, secadoras \\
+    Estufa / horno & 8 AWG & 40A & Electrodomésticos de alta potencia \\
+    Acometida principal & 6 AWG & 55A & Alimentación principal del hogar \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+\subsection{Blog Automático con Inteligencia Artificial}
+
+\begin{cajadestacado}[Blog inteligente con generación asistida por IA]
+Sistema completo de gestión de contenido construido sobre Next.js con generación automática de artículos vía API de IA. Los artículos se almacenan en PostgreSQL, se renderizan con SSG (Static Site Generation) para máximo rendimiento SEO, y pasan por un flujo de revisión antes de publicarse.
+\end{cajadestacado}
+
+\subsubsection{Diagrama del Flujo de Publicación}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    autonode/.style={rectangle, draw=azulelectrico, fill=azulelectrico!8, rounded corners=6pt,
+                 minimum width=3.5cm, minimum height=1cm, font=\small, align=center, line width=1pt},
+    humannode/.style={rectangle, draw=verdeok, fill=verdeok!8, rounded corners=6pt,
+                  minimum width=3.5cm, minimum height=1cm, font=\small, align=center, line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, thick, gristexto!70}
+]
+
+\node[autonode] (cron) {\faIcon{clock} Cron Job\\(Vercel Cron)};
+\node[autonode, right=of cron] (api) {\faIcon{robot} API IA\\genera borrador};
+\node[autonode, right=of api] (seo) {\faIcon{search} SEO auto\\+ Prisma save};
+
+\node[humannode, below=1.5cm of cron] (review) {\faIcon{user-edit} Revisión\\en dashboard};
+\node[humannode, below=1.5cm of api] (edit) {\faIcon{edit} Edición\\con editor rich};
+\node[humannode, below=1.5cm of seo] (publish) {\faIcon{globe} Publicar\\(ISR rebuild)};
+
+\node[autonode, below=1.5cm of edit] (social) {\faIcon{share-alt} Webhook\\redes sociales};
+
+\draw[arrow] (cron) -- (api);
+\draw[arrow] (api) -- (seo);
+\draw[arrow] (seo) -- (publish);
+\draw[arrow] (publish) -- (edit);
+\draw[arrow] (edit) -- (review);
+\draw[arrow] (review) -- (social);
+
+\node[font=\scriptsize\color{azulelectrico}, above=0.1cm of cron] {\textit{Automático}};
+\node[font=\scriptsize\color{verdeok}, above=0.1cm of review] {\textit{Manual}};
+
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Implementación Técnica del Blog}
+
+\begin{cajatech}[Stack del Blog con IA]
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+    \item \textbf{Generación:} API Route \texttt{/api/blog/generate} invoca OpenAI GPT-4o-mini
+    \item \textbf{Scheduler:} Vercel Cron Jobs --- ejecuta generación 2 veces por semana sin servidor propio
+    \item \textbf{Almacenamiento:} Tabla \texttt{BlogPost} en PostgreSQL vía Prisma
+    \item \textbf{Renderizado:} ISR (Incremental Static Regeneration) --- cada post es HTML estático para SEO perfecto
+    \item \textbf{Editor:} Dashboard admin con editor rich text (Tiptap) para revisión y edición
+    \item \textbf{SEO automático:} La IA genera título, meta-description, extracto y tags
+    \item \textbf{Imágenes:} Generación opcional con DALL-E o selección de banco en Cloudinary
+    \item \textbf{Costo API:} \$50--\$100 MXN/mes (8 artículos con GPT-4o-mini)
+\end{itemize}
+\end{cajatech}
+
+\subsubsection{Categorías de Contenido Automático}
+
+\begin{itemize}[leftmargin=*, itemsep=3pt]
+    \item \textbf{Guías prácticas:} ``Cómo instalar un apagador de 3 vías'', ``Guía de calibres de cable''
+    \item \textbf{Tendencias:} ``Iluminación LED inteligente 2026'', ``Domótica para el hogar''
+    \item \textbf{Seguridad eléctrica:} ``5 señales de que tu instalación necesita revisión''
+    \item \textbf{Comparativas:} ``LED vs Fluorescente: cuál conviene más''
+    \item \textbf{Normatividad:} Actualizaciones de NOM y regulaciones eléctricas
+    \item \textbf{Estacionales:} Preparación eléctrica para temporada de lluvias, calor, etc.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+% 6. DISEÑO VISUAL
+% ============================================================
+\section{Diseño Visual y Experiencia de Usuario}
+
+\subsection{Nueva Paleta de Colores}
+
+\begin{center}
+\begin{tikzpicture}
+    % Colores principales - más anchos
+    \fill[rojo] (0,0) rectangle (3.2,2);
+    \node[white, font=\small\bfseries] at (1.6,1.3) {Rojo Primario};
+    \node[white, font=\scriptsize] at (1.6,0.7) {\#CC0000};
+
+    \fill[grisoscuro] (3.7,0) rectangle (6.9,2);
+    \node[white, font=\small\bfseries] at (5.3,1.3) {Gris Oscuro};
+    \node[white, font=\scriptsize] at (5.3,0.7) {\#2B2B2B};
+
+    \fill[fondoclaro] (7.4,0) rectangle (10.6,2);
+    \draw[gristexto!30] (7.4,0) rectangle (10.6,2);
+    \node[grisoscuro, font=\small\bfseries] at (9,1.3) {Fondo Claro};
+    \node[gristexto, font=\scriptsize] at (9,0.7) {\#F3F7F9};
+
+    \fill[azulelectrico] (11.1,0) rectangle (14.3,2);
+    \node[white, font=\small\bfseries] at (12.7,1.3) {Azul Acento};
+    \node[white, font=\scriptsize] at (12.7,0.7) {\#0066CC};
+
+    % Secundarios
+    \fill[verdeok] (0,-1) rectangle (3.2,-2.5);
+    \node[white, font=\scriptsize\bfseries] at (1.6,-1.45) {Éxito};
+    \node[white, font=\scriptsize] at (1.6,-2.05) {\#28A745};
+
+    \fill[amarillo] (3.7,-1) rectangle (6.9,-2.5);
+    \node[grisoscuro, font=\scriptsize\bfseries] at (5.3,-1.45) {Advertencia};
+    \node[grisoscuro, font=\scriptsize] at (5.3,-2.05) {\#FFC107};
+
+    \fill[morado] (7.4,-1) rectangle (10.6,-2.5);
+    \node[white, font=\scriptsize\bfseries] at (9,-1.45) {Acento Tech};
+    \node[white, font=\scriptsize] at (9,-2.05) {\#7C3AED};
+
+    \fill[gristexto] (11.1,-1) rectangle (14.3,-2.5);
+    \node[white, font=\scriptsize\bfseries] at (12.7,-1.45) {Texto};
+    \node[white, font=\scriptsize] at (12.7,-2.05) {\#5D6576};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Principios de Diseño}
+
+\begin{enumerate}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Mobile First:} Tailwind CSS con breakpoints \texttt{sm}, \texttt{md}, \texttt{lg}, \texttt{xl}. Más del 65\% del tráfico en México es móvil.
+    \item \textbf{Rendimiento extremo:} Next.js Image con optimización automática (WebP/AVIF), lazy loading nativo, code splitting por ruta, prefetching inteligente.
+    \item \textbf{Componentes reutilizables:} Design system propio con Tailwind: botones, cards, formularios, modales --- consistencia visual garantizada.
+    \item \textbf{Animaciones sutiles:} Framer Motion para transiciones de página, aparición de elementos al scroll, hover states.
+    \item \textbf{Accesibilidad:} Contraste WCAG AA, navegación por teclado, etiquetas ARIA, componentes de Radix UI (accesibles por defecto).
+    \item \textbf{Dark mode ready:} Arquitectura de colores preparada para modo oscuro futuro con variables CSS de Tailwind.
+\end{enumerate}
+
+\subsection{Wireframe de la Página de Inicio}
+
+\begin{center}
+\begin{tikzpicture}[
+    seccion/.style 2 args={rectangle, draw=gristexto!40, fill=#1, minimum width=12cm,
+                    minimum height=#2, font=\small, align=center, rounded corners=2pt}
+]
+
+\node[seccion={rojo!10}{1.5cm}] (hero) at (0,0) {
+    \textbf{HERO} --- Animación con Framer Motion\\
+    CTA: ``Conoce nuestro simulador de iluminación''
+};
+
+\node[seccion={azulelectrico!8}{1.5cm}, below=0.2cm of hero] (tools) {
+    \textbf{3 TARJETAS INTERACTIVAS}\\
+    Simulador | Calculadora de Cable | Cotizador Rápido
+};
+
+\node[seccion={fondoclaro}{1cm}, below=0.2cm of tools] (cats) {
+    \textbf{CATEGORÍAS DESTACADAS}\\
+    Iluminación | Cables | Automatización | Control
+};
+
+\node[seccion={verdeok!8}{1cm}, below=0.2cm of cats] (prods) {
+    \textbf{PRODUCTOS DESTACADOS} (desde PostgreSQL)\\
+    Grid responsive de 4--8 productos con precios
+};
+
+\node[seccion={morado!8}{1cm}, below=0.2cm of prods] (blogw) {
+    \textbf{ÚLTIMOS ARTÍCULOS DEL BLOG} (ISR)\\
+    3 cards con artículos generados por IA
+};
+
+\node[seccion={gristexto!8}{0.8cm}, below=0.2cm of blogw] (trust) {
+    \textbf{CONFIANZA} --- Marcas | Testimonios | A\~nos de experiencia
+};
+
+\node[seccion={grisoscuro!15}{0.8cm}, below=0.2cm of trust] (footer) {
+    \textbf{FOOTER} --- Contacto | Mapa | Redes | WhatsApp flotante
+};
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 7. STACK TECNOLÓGICO
+% ============================================================
+\section{Stack Tecnológico Completo}
+
+\subsection{Diagrama de Capas}
+
+\begin{center}
+\begin{tikzpicture}[
+    tech/.style={rectangle, draw=#1, fill=#1!10, rounded corners=5pt,
+                 minimum width=2.8cm, minimum height=0.9cm, font=\small, align=center,
+                 line width=0.8pt},
+    layer/.style={rectangle, draw=gristexto!20, fill=gristexto!3, rounded corners=8pt,
+                  minimum width=14.5cm, minimum height=1.8cm},
+    layerlabel/.style={font=\scriptsize\bfseries\color{gristexto}}
+]
+
+% Frontend
+\node[layer] (fl) at (0, 5.5) {};
+\node[layerlabel, anchor=south west] at ([xshift=5pt, yshift=-2pt]fl.north west) {FRONTEND};
+\node[tech=azulelectrico] at (-4.5, 5.5) {React 19};
+\node[tech=cyan] at (-1.5, 5.5) {Tailwind CSS};
+\node[tech=naranja] at (1.5, 5.5) {Framer Motion};
+\node[tech=morado] at (4.5, 5.5) {TypeScript};
+
+% Framework
+\node[layer] (fwl) at (0, 3.3) {};
+\node[layerlabel, anchor=south west] at ([xshift=5pt, yshift=-2pt]fwl.north west) {FRAMEWORK};
+\node[tech=grisoscuro] at (-4.5, 3.3) {Next.js 15};
+\node[tech=rojo] at (-1.5, 3.3) {App Router};
+\node[tech=verdeok] at (1.5, 3.3) {Server Actions};
+\node[tech=azulelectrico] at (4.5, 3.3) {API Routes};
+
+% Base de datos
+\node[layer] (dbl) at (0, 1.1) {};
+\node[layerlabel, anchor=south west] at ([xshift=5pt, yshift=-2pt]dbl.north west) {DATOS};
+\node[tech=morado] at (-4.5, 1.1) {PostgreSQL};
+\node[tech=grisoscuro] at (-1.5, 1.1) {Prisma ORM};
+\node[tech=naranja] at (1.5, 1.1) {Cloudinary};
+\node[tech=verdeok] at (4.5, 1.1) {NextAuth.js};
+
+% APIs externas
+\node[layer] (apil) at (0, -1.1) {};
+\node[layerlabel, anchor=south west] at ([xshift=5pt, yshift=-2pt]apil.north west) {APIs EXTERNAS};
+\node[tech=azulelectrico] at (-4.5, -1.1) {OpenAI API};
+\node[tech=verdeok] at (-1.5, -1.1) {WhatsApp API};
+\node[tech=amarillo!80!black] at (1.5, -1.1) {Google GA4};
+\node[tech=rojo] at (4.5, -1.1) {Resend (email)};
+
+% Infraestructura
+\node[layer] (il) at (0, -3.3) {};
+\node[layerlabel, anchor=south west] at ([xshift=5pt, yshift=-2pt]il.north west) {INFRAESTRUCTURA};
+\node[tech=grisoscuro] at (-4.5, -3.3) {Vercel};
+\node[tech=azulelectrico] at (-1.5, -3.3) {Edge Network};
+\node[tech=naranja] at (1.5, -3.3) {Supabase};
+\node[tech=verdeok] at (4.5, -3.3) {GitHub CI/CD};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Detalle de Tecnologías Clave}
+
+\begin{itemize}[leftmargin=*, itemsep=5pt]
+    \item \textbf{Next.js 15 (App Router):} Framework fullstack de React. Renderizado híbrido SSR/SSG/ISR, API Routes para backend, Server Actions para mutaciones, middleware para auth y redirecciones.
+
+    \item \textbf{TypeScript:} Tipado estático en todo el proyecto. Reduce bugs, mejora la mantenibilidad y permite autocompletado inteligente en todo el código.
+
+    \item \textbf{Tailwind CSS:} Framework de utilidades CSS. Diseño consistente sin CSS custom, purge automático (solo se envía el CSS que se usa), responsive design declarativo.
+
+    \item \textbf{PostgreSQL + Prisma:} Base de datos relacional robusta con ORM type-safe. Migraciones versionadas, queries optimizadas, relaciones complejas sin SQL manual.
+
+    \item \textbf{Vercel:} Plataforma de deploy optimizada para Next.js. Edge caching global, preview deployments por branch, analytics integrados, dominio custom con SSL automático.
+
+    \item \textbf{NextAuth.js:} Autenticación para el panel de administración. Login seguro con credenciales o proveedores OAuth, sesiones JWT, middleware de protección de rutas.
+
+    \item \textbf{Cloudinary:} CDN de imágenes con transformaciones automáticas. Optimización WebP/AVIF, resize on-the-fly, lazy loading nativo.
+\end{itemize}
+
+\subsection{Estructura del Proyecto}
+
+\begin{cajatech}[Estructura de carpetas Next.js]
+\begin{verbatim}
+electrica-san-miguel/
+├── app/                    # App Router (páginas y layouts)
+│   ├── (public)/           # Rutas públicas
+│   │   ├── page.tsx        # Home
+│   │   ├── productos/      # Catálogo SSG
+│   │   ├── simulador/      # Simulador iluminación
+│   │   ├── calculadora/    # Calculadora cables
+│   │   ├── blog/           # Blog ISR
+│   │   └── contacto/       # Formulario + WhatsApp
+│   ├── admin/              # Dashboard protegido
+│   │   ├── productos/      # CRUD productos
+│   │   ├── blog/           # Gestión artículos IA
+│   │   └── leads/          # CRM de contactos
+│   └── api/                # API Routes
+├── components/             # Componentes reutilizables
+├── lib/                    # Utilidades (prisma, openai, auth)
+├── prisma/schema.prisma    # Modelo de datos
+└── tailwind.config.ts      # Configuración Tailwind
+\end{verbatim}
+\end{cajatech}
+
+\newpage
+
+% ============================================================
+% 8. MAPA DEL SITIO
+% ============================================================
+\section{Mapa del Sitio}
+
+\begin{center}
+\begin{tikzpicture}[
+    level 1/.style={sibling distance=2.6cm, level distance=2cm},
+    level 2/.style={sibling distance=1.8cm, level distance=1.8cm},
+    every node/.style={rectangle, draw=gristexto!50, fill=fondoclaro, rounded corners=4pt,
+                       font=\tiny, align=center, minimum width=1.6cm, minimum height=0.6cm,
+                       drop shadow={shadow xshift=0.5pt, shadow yshift=-0.5pt, opacity=0.15}},
+    root/.style={fill=rojo!15, draw=rojo, font=\tiny\bfseries, minimum width=2cm},
+    edge from parent/.style={draw=gristexto!50, thick, -{Stealth[length=3pt]}}
+]
+
+\node[root] {\texttt{/} Inicio}
+    child { node {\texttt{/productos}\\Catálogo}
+        child { node {Iluminación} }
+        child { node {Cables} }
+        child { node {Control} }
+    }
+    child { node {\texttt{/simulador}\\Iluminación} }
+    child { node {\texttt{/calculadora}\\Cableado} }
+    child { node {\texttt{/blog}\\Artículos} }
+    child { node {\texttt{/nosotros}} }
+    child { node {\texttt{/contacto}}
+        child { node {WhatsApp} }
+        child { node {Cotizador} }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[
+    level 1/.style={sibling distance=3.5cm, level distance=2cm},
+    every node/.style={rectangle, draw=morado!50, fill=morado!5, rounded corners=4pt,
+                       font=\scriptsize, align=center, minimum width=2.2cm, minimum height=0.7cm,
+                       drop shadow={shadow xshift=0.5pt, shadow yshift=-0.5pt, opacity=0.15}},
+    root/.style={fill=morado!15, draw=morado, font=\scriptsize\bfseries, minimum width=3cm},
+    edge from parent/.style={draw=morado!50, thick, -{Stealth[length=4pt]}}
+]
+
+\node[root] {\texttt{/admin}\\Dashboard (protegido)}
+    child { node {\texttt{/admin/}\\productos} }
+    child { node {\texttt{/admin/}\\blog} }
+    child { node {\texttt{/admin/}\\leads} }
+    child { node {\texttt{/admin/}\\config} };
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 9. PLAN DE TRABAJO
+% ============================================================
+\section{Plan de Trabajo}
+
+\subsection{Diagrama de Gantt}
+
+\begin{center}
+\begin{tikzpicture}[
+    x=1.1cm, y=-0.9cm,
+    phase/.style={fill=#1, rounded corners=3pt, minimum height=0.55cm, anchor=west,
+                  font=\scriptsize\color{white}, inner sep=3pt},
+    lbl/.style={font=\scriptsize, anchor=east, text width=4cm, align=right},
+    week/.style={font=\tiny\color{gristexto}}
+]
+
+% Encabezado semanas
+\foreach \i/\s in {1/S1, 2/S2, 3/S3, 4/S4, 5/S5, 6/S6, 7/S7, 8/S8, 9/S9, 10/S10, 11/S11, 12/S12} {
+    \node[week] at (\i, 0) {\s};
+    \draw[gristexto!10] (\i-0.5, -0.3) -- (\i-0.5, -10.3);
+}
+
+\node[lbl] at (0.4, 1) {Análisis y UX/UI};
+\node[phase=azulelectrico, minimum width=2*1.1cm] at (0.5, 1) {};
+
+\node[lbl] at (0.4, 2) {Diseño visual (Figma)};
+\node[phase=naranja, minimum width=2*1.1cm] at (2.5, 2) {};
+
+\node[lbl] at (0.4, 3) {Setup Next.js + DB + Auth};
+\node[phase=morado, minimum width=2*1.1cm] at (4.5, 3) {};
+
+\node[lbl] at (0.4, 4) {Catálogo + Panel admin};
+\node[phase=rojo, minimum width=2*1.1cm] at (5.5, 4) {};
+
+\node[lbl] at (0.4, 5) {Simulador iluminación};
+\node[phase=azulelectrico, minimum width=2*1.1cm] at (6.5, 5) {};
+
+\node[lbl] at (0.4, 6) {Calculadora cables};
+\node[phase=verdeok, minimum width=1*1.1cm] at (7.5, 6) {};
+
+\node[lbl] at (0.4, 7) {Blog IA + Cron};
+\node[phase=amarillo!80!black, minimum width=2*1.1cm] at (8.5, 7) {};
+
+\node[lbl] at (0.4, 8) {SEO + Analytics + WhatsApp};
+\node[phase=cyan, minimum width=1*1.1cm] at (9.5, 8) {};
+
+\node[lbl] at (0.4, 9) {Testing + QA};
+\node[phase=gristexto, minimum width=1*1.1cm] at (10.5, 9) {};
+
+\node[lbl] at (0.4, 10) {Lanzamiento};
+\node[phase=rojo, minimum width=1*1.1cm] at (11.5, 10) {};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Detalle de Fases}
+
+\begin{enumerate}[leftmargin=*, itemsep=5pt]
+    \item \textbf{Semanas 1--2: Análisis y Diseño UX/UI}\\
+        Auditoría del sitio actual, wireframes, flujos de usuario, diseño del modelo de datos (schema Prisma). Entregable: wireframes + schema aprobados.
+
+    \item \textbf{Semanas 3--4: Diseño Visual}\\
+        Mockups de alta fidelidad en Figma, design system en Tailwind, diseño responsivo (móvil, tablet, desktop). Entregable: mockups finales aprobados.
+
+    \item \textbf{Semanas 5--6: Setup del Proyecto}\\
+        Inicializar Next.js 15 + TypeScript + Tailwind. Configurar PostgreSQL (Supabase/Neon) + Prisma + migraciones. NextAuth.js + deploy inicial en Vercel con CI/CD.
+
+    \item \textbf{Semanas 6--7: Catálogo y Panel Admin}\\
+        CRUD completo de productos y categorías. Panel de administración con dashboard. Páginas de catálogo con SSG y filtros. Integración con Cloudinary.
+
+    \item \textbf{Semanas 7--8: Simulador de Iluminación}\\
+        Componente React con Canvas/Three.js. 5 escenas, 3 temperaturas de color + slider. Vinculación con productos de la BD.
+
+    \item \textbf{Semana 8: Calculadora de Cables}\\
+        Wizard multi-step con react-hook-form. Tabla NOM-001-SEDE en PostgreSQL. Recomendación vinculada a productos reales.
+
+    \item \textbf{Semanas 9--10: Blog con IA}\\
+        Integración API OpenAI, Vercel Cron Jobs, editor Tiptap en admin, ISR para renderizado estático.
+
+    \item \textbf{Semana 10: SEO, Analytics e Integraciones}\\
+        GA4, Search Console, Schema.org JSON-LD, sitemap dinámico, WhatsApp Business API, emails con Resend.
+
+    \item \textbf{Semana 11: Testing y QA}\\
+        Pruebas cross-browser/device, testing de API routes, Lighthouse PageSpeed $>$ 95, pruebas de seguridad.
+
+    \item \textbf{Semana 12: Lanzamiento}\\
+        Migración de contenido, configuración de dominio en Vercel, capacitación del panel admin (2 sesiones), monitoreo post-lanzamiento.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+% 10. COTIZACIÓN
+% ============================================================
+\section{Cotización}
+
+\subsection{Desglose de Inversión}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.8cm} X >{\raggedleft\arraybackslash}p{2.5cm}}
+    \toprule
+    \textbf{No.} & \textbf{Concepto} & \textbf{Precio MXN} \\
+    \midrule
+    1 & \textbf{Análisis, UX/UI y Arquitectura} \newline
+        Auditoría del sitio actual, wireframes, flujos de usuario, diseño del modelo de datos (schema Prisma), mapa de sitio
+        & \$3,000.00 \\
+    \midrule
+    2 & \textbf{Diseño Visual de Alta Fidelidad} \newline
+        Mockups en Figma para todas las páginas y herramientas interactivas. Design system con Tailwind. Versiones mobile, tablet y desktop
+        & \$3,500.00 \\
+    \midrule
+    3 & \textbf{Setup Next.js + PostgreSQL + Infraestructura} \newline
+        Proyecto Next.js 15 + TypeScript + Tailwind, PostgreSQL con Prisma ORM, NextAuth.js, deploy en Vercel con CI/CD, Cloudinary
+        & \$3,000.00 \\
+    \midrule
+    4 & \textbf{Catálogo de Productos + Panel Admin} \newline
+        CRUD completo de productos/categorías, panel de administración con dashboard, páginas SSG con filtros, búsqueda full-text
+        & \$3,500.00 \\
+    \midrule
+    5 & \textbf{Simulador de Iluminación Interactivo} \newline
+        Componente React con Canvas/Three.js, 5 escenarios, 3 temperaturas de color, slider de intensidad, vinculación con productos de BD
+        & \$4,000.00 \\
+    \midrule
+    6 & \textbf{Calculadora de Tipo de Cable} \newline
+        Wizard multi-step, lógica NOM-001-SEDE en PostgreSQL, recomendación con productos reales, lead capture
+        & \$2,000.00 \\
+    \midrule
+    7 & \textbf{Blog Automático con IA} \newline
+        Integración OpenAI, Vercel Cron Jobs, editor Tiptap en admin, ISR, SEO automático, categorización inteligente
+        & \$3,000.00 \\
+    \midrule
+    8 & \textbf{SEO, Analytics e Integraciones} \newline
+        GA4, Search Console, Schema.org JSON-LD, sitemap dinámico, WhatsApp Business, emails con Resend
+        & \$1,500.00 \\
+    \midrule
+    9 & \textbf{Testing, QA, Migración y Lanzamiento} \newline
+        Pruebas cross-browser/device, migración de contenido, configuración de dominio, 2 sesiones de capacitación
+        & \$1,500.00 \\
+    \midrule
+    \midrule
+    & \textbf{SUBTOTAL} & \textbf{\$25,000.00} \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{cajaprecio}
+\begin{center}
+    {\LARGE\bfseries\color{verdeok} INVERSIÓN TOTAL: \$25,000.00 MXN}\\[8pt]
+    {\small\color{gristexto} (Veinticinco mil pesos 00/100 M.N.)}\\[4pt]
+    {\small\color{gristexto} * IVA incluido en el precio total}
+\end{center}
+\end{cajaprecio}
+
+\subsection{Esquema de Pagos}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=0.3cm,
+    pago/.style={rectangle, draw=#1, fill=#1!10, rounded corners=6pt,
+                 minimum width=4.5cm, minimum height=1.5cm, font=\small, align=center,
+                 line width=1pt},
+    arrow/.style={-{Stealth[length=5pt]}, very thick, gristexto!50}
+]
+
+\node[pago=rojo] (p1) {\textbf{Pago 1: 40\%}\\{\large\bfseries \$10,000}\\Al iniciar el proyecto};
+\node[pago=naranja, right=of p1] (p2) {\textbf{Pago 2: 30\%}\\{\large\bfseries \$7,500}\\Al aprobar diseño};
+\node[pago=verdeok, right=of p2] (p3) {\textbf{Pago 3: 30\%}\\{\large\bfseries \$7,500}\\Al entregar el sitio};
+
+\draw[arrow] (p1) -- (p2);
+\draw[arrow] (p2) -- (p3);
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Costos de Infraestructura (mensuales)}
+
+\begin{cajainfo}[Costos operativos mensuales estimados]
+\begin{center}
+\begin{tabularx}{\textwidth}{X >{\raggedleft\arraybackslash}p{3.5cm}}
+    \toprule
+    \textbf{Servicio} & \textbf{Costo mensual} \\
+    \midrule
+    Vercel Pro (hosting Next.js, edge, analytics) & \$400 MXN (\$20 USD) \\
+    Supabase Free/Pro (PostgreSQL) & \$0 -- \$500 MXN \\
+    Cloudinary (imágenes, CDN) & \$0 (tier gratuito) \\
+    API OpenAI para blog (8 artículos/mes) & \$50 -- \$100 MXN \\
+    Dominio (renovación anual prorrateada) & \$30 MXN \\
+    \midrule
+    \textbf{Total estimado mensual} & \textbf{\$480 -- \$1,030 MXN} \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+\end{cajainfo}
+
+\textbf{Nota:} Vercel y Supabase ofrecen planes gratuitos generosos. Para un sitio con tráfico moderado, el costo mensual puede ser tan bajo como \$100 MXN.
+
+\newpage
+
+% ============================================================
+% 11. FUNCIONALIDADES ADICIONALES
+% ============================================================
+\section{Funcionalidades Adicionales (Opcionales)}
+
+Las siguientes funcionalidades pueden agregarse al proyecto por un costo adicional:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{X >{\raggedleft\arraybackslash}p{2.5cm}}
+    \toprule
+    \textbf{Funcionalidad} & \textbf{Costo MXN} \\
+    \midrule
+    \textbf{Chatbot con IA} --- Asistente virtual 24/7 integrado con el catálogo de productos. Usa RAG (Retrieval Augmented Generation) sobre la BD de productos & \$10,000.00 \\
+    \addlinespace
+    \textbf{Cotizador avanzado en línea} --- El cliente describe su proyecto eléctrico y recibe cotización estimada automática basada en productos y precios de la BD & \$7,000.00 \\
+    \addlinespace
+    \textbf{E-commerce completo (Stripe)} --- Carrito de compras, checkout, pagos con tarjeta/OXXO/transferencia vía Stripe, historial de pedidos & \$12,000.00 \\
+    \addlinespace
+    \textbf{PWA (Progressive Web App)} --- Sitio instalable en celulares, notificaciones push, funcionamiento offline parcial & \$5,000.00 \\
+    \addlinespace
+    \textbf{Dashboard de analytics propio} --- Panel con métricas de visitas, productos más vistos, leads generados, artículos más leídos (sin depender de GA4) & \$6,000.00 \\
+    \addlinespace
+    \textbf{Multi-idioma (i18n)} --- Soporte para inglés además de español, con \texttt{next-intl} & \$4,000.00 \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% 12. GARANTÍAS Y SOPORTE
+% ============================================================
+\section{Garantías y Soporte}
+
+\begin{cajainfo}[Lo que incluye esta propuesta]
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \faIcon{check-circle} \textbf{30 días de soporte gratuito} posterior al lanzamiento para corrección de bugs
+    \item \faIcon{check-circle} \textbf{Capacitación completa} en el uso del panel admin, herramientas interactivas y blog automático (2 sesiones de 1.5 horas por videollamada)
+    \item \faIcon{check-circle} \textbf{Documentación técnica} del proyecto: estructura, variables de entorno, flujos de deploy
+    \item \faIcon{check-circle} \textbf{Repositorio GitHub} --- el cliente es dueño del código y el repositorio completo
+    \item \faIcon{check-circle} \textbf{Rendimiento garantizado} --- Lighthouse/PageSpeed $>$ 95 en móvil y desktop
+    \item \faIcon{check-circle} \textbf{2 rondas de revisiones} incluidas en cada fase de diseño
+    \item \faIcon{check-circle} \textbf{Compatibilidad} con Chrome, Firefox, Safari, Edge y dispositivos iOS/Android
+    \item \faIcon{check-circle} \textbf{CI/CD configurado} --- push a \texttt{main} = deploy automático en Vercel
+\end{itemize}
+\end{cajainfo}
+
+\subsection{Condiciones}
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item El contenido textual y fotográfico de productos será proporcionado por el cliente
+    \item Las imágenes del simulador de iluminación son escenas genéricas de alta calidad
+    \item Las cuentas de Vercel, Supabase, Cloudinary y OpenAI serán creadas a nombre del cliente
+    \item El costo de las APIs y servicios de infraestructura es un gasto operativo mensual del cliente
+    \item Cambios de alcance posteriores a la aprobación del diseño pueden generar costos adicionales
+    \item El código se entrega bajo licencia MIT --- propiedad completa del cliente
+\end{itemize}
+
+\subsection{Vigencia}
+
+Esta propuesta tiene una vigencia de \textbf{30 días naturales} a partir de la fecha de emisión.
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[rojo, line width=1.5pt, rounded corners=10pt] (0,0) rectangle (12, -3.5);
+    \node[font=\large\bfseries\color{rojo}, anchor=north] at (6, -0.4) {¿Listo para transformar su presencia digital?};
+    \node[font=\small\color{gristexto}, anchor=north, text width=10cm, align=center] at (6, -1.3) {
+        Con Next.js, PostgreSQL y herramientas de IA,\\
+        Eléctrica San Miguel tendrá un sitio web de clase mundial:\\
+        ultra rápido, interactivo y preparado para escalar sin límites.
+    };
+    \node[font=\small\color{gristexto}, anchor=north] at (6, -2.8) {
+        \faIcon{phone} Agende una reunión \quad | \quad
+        \faIcon{envelope} Respuesta en menos de 24h
+    };
+\end{tikzpicture}
+\end{center}
+
+\end{document}
